@@ -73,31 +73,7 @@
             </div>
         </header>
         <!-- Header End -->
-        <!-- Hero Section Begin -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero__slider owl-carousel">
-                    @foreach (var movie in Model)
-                    {
-                        <div class="hero__items set-bg" data-setbg="@Url.Content("~/images/" + movie.Poster)">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="hero__text">
-                                        <div class="label">@movie.GenreId</div>
-                                        <h2>@movie.MovieName</h2>
-                                        <p>@movie.Description</p>
-                                        <a href="@movie.Trailer"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </section>
-        <!-- Hero Section End -->
-
-        <div style="min-height:auto">
+        <div style="margin-bottom: 100px;">
             @RenderBody()
         </div>
 
