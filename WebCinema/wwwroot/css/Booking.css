@@ -4,3 +4,20 @@
 .span_number{
 
 }
+
+.content-item clearfix{
+    display: flex;
+}
+
+.content-item clearfix .item-left{
+    display: flex;
+    flex-grow: 4;
+}
+
+.content-item clearfix item-right{
+    display: flex;
+    flex-grow: 2;
+}
+
+
+

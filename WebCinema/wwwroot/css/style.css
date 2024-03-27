@@ -81,7 +81,23 @@ p {
 	color: #3d3d3d;
 	font-weight: 400;
 	line-height: 25px;
-	margin: 0 0 15px 0;
+	margin: 0 0 15px 5px;
+}
+
+p.seat {
+	position: relative;
+	display: inline-block; /* Ensure that the container wraps around the image */
+	cursor: pointer;
+}
+
+span.seat-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	/* background-color: rgba(255, 255, 255, 0.5); */ /* Semi-transparent background */
+	padding: 5px; /* Add padding for readability */
+	font-size: 14px; /* Adjust font size as needed */
 }
 
 img {
