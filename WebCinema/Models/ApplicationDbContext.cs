@@ -36,10 +36,11 @@ namespace WebCinema.Models
                 .Property(t => t.ShowId)
                 .HasMaxLength(450);
 
-            modelBuilder.Entity<IdentityUser>().Ignore(c => c.TwoFactorEnabled);//and so on...
+            //modelBuilder.Entity<IdentityUser>().Ignore(c => c.TwoFactorEnabled);//and so on...
 
             //modelBuilder.Entity<IdentityUser>().ToTable("Users");//to change the name of table.
             base.OnModelCreating(modelBuilder);
+
         }
     }
 }

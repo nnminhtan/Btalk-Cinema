@@ -15,7 +15,8 @@ namespace WebCinema.Models
 
         public int? ComboId { get; set; }
         public string ShowId { get; set; }
-
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; } // Navigation property
 
         public Showtime Showtime { get; set; }
         public Combo Combo { get; set; }
