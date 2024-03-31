@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using static Azure.Core.HttpHeader;
 using System.Net.Sockets;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WebCinema.Models
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -19,9 +21,6 @@ namespace WebCinema.Models
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketInfo> TicketInfos { get; set; }
         public DbSet<Combo> Combos { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<User> Users { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +35,11 @@ namespace WebCinema.Models
             modelBuilder.Entity<Ticket>()
                 .Property(t => t.ShowId)
                 .HasMaxLength(450);
+
+            modelBuilder.Entity<IdentityUser>().Ignore(c => c.TwoFactorEnabled);//and so on...
+
+            //modelBuilder.Entity<IdentityUser>().ToTable("Users");//to change the name of table.
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

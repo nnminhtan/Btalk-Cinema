@@ -15,11 +15,11 @@ namespace WebCinema.Models
 
         public int? ComboId { get; set; }
         public string ShowId { get; set; }
-        public int CustomerId { get; set; }
+
 
         public Showtime Showtime { get; set; }
         public Combo Combo { get; set; }
-        public Customer Customer { get; set; }
+
 
         public ICollection<TicketInfo> TicketInfos { get; set; }
     }
