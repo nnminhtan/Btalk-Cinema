@@ -7,9 +7,11 @@ namespace WebCinema.Models
     {
         [Required]
         public string FullName { get; set; }
-        public string? Address { get; set; }
-        public string? DateOfBirth { get; set; }
-        public string? CMND { get; set; } 
-        public string? Sex { get; set; }
+        [Required]
+        public string Address { get; set; }
+        [Required]
+        public string DateOfBirth { get; set; }
+        [Required]
+        public string CMND { get; set; }
     }
 }
