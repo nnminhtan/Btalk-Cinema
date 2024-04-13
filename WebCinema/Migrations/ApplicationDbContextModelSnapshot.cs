@@ -258,8 +258,11 @@ namespace WebCinema.Migrations
 
             modelBuilder.Entity("WebCinema.Models.Genre", b =>
                 {
-                    b.Property<string>("GenreId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("GenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
 
                     b.Property<string>("GenreName")
                         .IsRequired()
@@ -272,8 +275,11 @@ namespace WebCinema.Migrations
 
             modelBuilder.Entity("WebCinema.Models.Movie", b =>
                 {
-                    b.Property<string>("MovieId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("MovieId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -282,9 +288,8 @@ namespace WebCinema.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("GenreId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
 
                     b.Property<string>("MovieLength")
                         .IsRequired()
@@ -299,7 +304,6 @@ namespace WebCinema.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Poster")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")
@@ -341,8 +345,11 @@ namespace WebCinema.Migrations
 
             modelBuilder.Entity("WebCinema.Models.Screentime", b =>
                 {
-                    b.Property<string>("ScreenTimeId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ScreenTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScreenTimeId"));
 
                     b.Property<TimeSpan>("ScreenTime")
                         .HasColumnType("time");
@@ -370,20 +377,21 @@ namespace WebCinema.Migrations
 
             modelBuilder.Entity("WebCinema.Models.Showtime", b =>
                 {
-                    b.Property<string>("ShowId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ShowId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("MovieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShowId"));
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
                     b.Property<string>("RoomId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ScreenTimeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ScreenTimeId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ShowtimeDate")
                         .HasColumnType("datetime2");
@@ -430,10 +438,9 @@ namespace WebCinema.Migrations
                     b.Property<TimeSpan>("ScreenTime")
                         .HasColumnType("time");
 
-                    b.Property<string>("ShowId")
-                        .IsRequired()
+                    b.Property<int>("ShowId")
                         .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int");
 
                     b.Property<int>("Total")
                         .HasColumnType("int");

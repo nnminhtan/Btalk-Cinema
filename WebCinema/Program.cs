@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebCinema.Models;
+using WebCinema.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +17,8 @@ builder.Services.AddRazorPages();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddScoped<IProductRepository, EFProductRepository>();
-//builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
+builder.Services.AddScoped<IMovieRepo, EFMovieRepo>();
+builder.Services.AddScoped<IGenreRepo, EFGenreRepo>();
 
 
 var app = builder.Build();
