@@ -1,0 +1,147 @@
+﻿@model IEnumerable<WebCinema.Models.Movie>
+@{
+    ViewData["Title"] = "LichChieu";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<body>
+    <!--Body begin-->
+    <link href="~/css/showtimes.css" rel="stylesheet" />
+
+    <div class="Title-span shar" style="font-weight: bold">
+        <a href="/">
+            <span>Trang Chủ</span>
+
+        </a>
+        >
+        <label>
+            <span id="ShowTimes.cshtml">Lịch Chiếu</span>
+            <span id="sublink"></span>
+        </label>
+    </div>
+    <div class="banner">
+        <span>Lịch Chiếu</span>
+    </div>
+
+    <!--Combo box-->
+    <div class="box-selected">
+        <div class="box-slected-1">
+            <nav class="header__menu mobile-menu">
+
+                <ul>
+                    <li>
+                        CHỌN SUẤT CHIẾU THEO PHIM <span class="arrow_carrot-down"></span>
+                        <ul class="dropdown">
+                            @foreach (var movie in Model)
+                            {
+                                <li><a href="./categories.html"></a>@movie.MovieName</li>
+                            }
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+        <div class="box-selected-2">
+            <nav class="header__menu mobile-menu">
+                <ul>
+                    <li>
+                        CHỌN NGÀY CHIẾU <span class="arrow_carrot-down"></span>
+                        <ul class="dropdown">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                <li>
+                                    <a href="#" class="select-option">@DateTime.Today.AddDays(i).ToShortDateString()</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    </div>
+
+    <div class="product-list">
+        <!--Add Film-->
+        @foreach (var movie in Model)
+        {
+            <div class="list-items">
+                <div class="title" data-movie="BakingBad" data-mct="YES" data-lct="YES" data-compare="/Baking Bad/" mvroot="Baking Bad [PG13]">
+                    <a href="blog.html">
+                        <h4>Baking Bad</h4>
+                    </a>
+                    <div class="item-left">
+                        <img src="~/images/baking-bad.png" />
+                    </div>
+                </div>
+
+                <div class="item-right">
+                    <div class="span_time">
+                        <span>
+                            <i class="fa-solid fa-clock">Thời lượng:</i>
+                            @movie.MovieLength
+                        </span>
+                        <span>
+                            <i class="fas fa-tags"> Thể loại:</i>
+                            @movie.Genre.GenreName
+                        </span>
+                        <span>
+                            <i class="fa-solid fa-calendar">Khởi chiếu:</i>
+                            @movie.ReleaseDate
+                        </span>
+                    </div>
+                    <div class="group_select_showtime">
+                        <div class="showTimeCustom ">
+                            <span class="cinema-label">Rạp Cao Thắng</span>
+                            <div class="groupABC">
+                                <div class="type_movie">
+                                    <a class="active">
+                                        <span class="ganre">2D</span>
+                                        <span class="viet_sub">Phụ đề / sub</span>
+                                    </a>
+                                </div>
+                                @* <div class="about_showtimes" id="2d_pd_showtime">
+                            <div>
+                            <a href="javascript:void(0)" class="check-booking">
+                            <span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162383" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">22:00</span>
+                            </a>
+                            <a href="javascript:void(0)" class="check-booking">
+                            <span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162498" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">23:00</span>
+                            </a><a href="javascript:void(0)" class="check-booking"><span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162662" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">23:55</span></a>
+                            </div>
+                            </div> *@
+                            </div>
+                            <div class="notification">
+                            </div>
+                        </div>
+                        <div class="showTimeCustom">
+                            <span class="cinema-label">Rạp Lý Chính Thắng</span>
+                            <div class="groupABC">
+                                <div class="type_movie">
+                                    <a class="active">
+                                        <span class="ganre">2D</span>
+                                        <span class="viet_sub">Phụ đề / sub</span>
+                                    </a>
+                                    @*  </div><div class="about_showtimes" id="2d_pd_showtime">
+                                <div>
+                                <a href="javascript:void(0)" class="check-booking">
+                                <span data-cinema="LCT" namemv="SANG DEN [PG13]" txtsessionid="38988" imgmv="SANG DEN [PG13]" submv="SAN" onclick="bookingClickCustom(this)">22:40</span>
+                                </a>
+                                </div>
+                                </div> *@
+                                </div><div class="notification"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        }
+    </div>
+
+</body>

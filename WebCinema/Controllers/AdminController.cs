@@ -170,16 +170,13 @@ namespace WebCinema.Controllers
             return View(movie);
         }
         // Xử lý xóa sản phẩm
-        [HttpPost, ActionName("DeleteConfirmed")]
-        [ValidateAntiForgeryToken]  // Add this attribute
-
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int MovieId)
         {
-            if (id <= 0)  // Check for non-positive values
+            if (MovieId <= 0)  // Check for non-positive values
             {
                 return BadRequest("Invalid Movie ID");  // Handle invalid ID
             }
-            await _movieRepo.DeleteAsync(id);
+            await _movieRepo.DeleteAsync(MovieId);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> DashBoard()

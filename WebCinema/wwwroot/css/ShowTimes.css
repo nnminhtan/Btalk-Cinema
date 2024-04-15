@@ -1,0 +1,110 @@
+﻿body {
+    background-color: lightgrey;
+}
+/* Định dạng menu dropdown */
+.box-selected {
+    width: 80%;
+    /*height: 40px;*/
+    font-size: 25px;
+    display: flex; /* Sử dụng flexbox để các hộp nằm cùng hàng */
+    align-items: center;
+    justify-content: center;
+    pae
+    margin: auto;
+}
+
+    /*.box-selected .box-selected-1 {
+        color: #ffd800;*/ /* Màu chữ */
+        /*background-color: #00ffff;*/ /* Màu nền */
+        /*padding: 10px;*/ /* Khoảng cách giữa lề và nội dung */
+        /*border-radius: 5px;*/ /* Bo tròn viền */
+    /*}*/
+
+/* Điều chỉnh các phần tử menu dropdown tùy chọn nếu cần */
+.header__menu {
+    position: relative; /* Đảm bảo phần tử dropdown xuất hiện chính xác */
+}
+
+    .header__menu:hover .dropdown {
+        display: block; /* Hiển thị dropdown khi hover trên phần tử menu */
+    }
+
+.banner {
+    width: 100%;
+    height: 60px; /* Chiều cao banner */
+    background-color: #f2f2f2; /* Màu nền xám nhạt */
+    display: flex; /* Cho phép bố trí nội dung theo hàng ngang */
+    align-items: center; /* Căn chỉnh nội dung theo chiều dọc */
+    justify-content: center; /* Căn chỉnh nội dung theo chiều ngang */
+}
+
+    /* Tiêu đề */
+    .banner span {
+        color: #333; /* Màu chữ đen */
+        font-size: 40px; /* Kích thước chữ */
+        font-weight: bold; /* Chữ in đậm */
+        margin: 0; /* Xóa khoảng cách mặc định */
+    }
+
+.product-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto
+}
+
+.list-items {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    h4
+
+{
+    color: #ff0000; /* Đỏ */
+}
+
+}
+
+.item-left {
+    flex: 0 0 30%;
+    position: relative;
+    padding: 30px;
+}
+
+    .item-left img {
+        width: 190px; /* Chiều rộng poster */
+        height: 238px; /* Chiều cao poster */
+        margin: 0 auto; /* Căn giữa poster */
+        border: 1px solid #ccc; /* Viền poster */
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Bóng đổ poster */
+    }
+
+
+/*.rating .star::before {
+    content: "\f005 ";*/ /* Icon ngôi sao rỗng - Font Awesome */
+/*margin-right: 5px;
+}
+
+.play-button::before {
+    content: "\f04b ";*/ /* Icon play - Font Awesome */
+/*font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}*/
+
+
+
+.item-right {
+    flex: 1;
+    padding: 10px;
+}
+
+.movie-image {
+    width: 100%;
+    height: auto;
+}
