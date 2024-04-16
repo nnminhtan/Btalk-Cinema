@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebCinema.Models.Movie>
 @{
     ViewData["Title"] = "MovieDeltails";
-   
+    var movie = Model.FirstOrDefault(); // Lấy thông tin của phim đầu tiên trong danh sách
 }
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -21,19 +21,15 @@
         >
     </div>
 
-    @foreach (var movie in Model)
+    @if (movie != null)
     {
-   
         <div class="banner">
             <span></span>
         </div>
         <div class="movie-detail-wapper">
-
             <div class="contents-page">
-
                 <div class="dt-contents">
                     <div class="dt-left clearfix">
-
                         <div class="img-content">
                             <div class="box">
                                 <div class="box-left">
@@ -60,7 +56,6 @@
                                 <span>@movie.Description</span>
                             </div>
                             <div class="clearfix"></div>
-
                             <p class="p-bold">
                                 Ngôn ngữ: <span>
                                     Phụ đề Tiếng Việt
@@ -69,9 +64,6 @@
                             <!-- <p class="p-bold">Phát hành: <span>Galaxy Distribution </span></p> -->
                             <div class="clearfix"></div>
                             <div class="dt-film-content scroll-detail clearfix" style="overflow: hidden; padding: 0px; width: 450px;">
-
-
-
                                 <div class="jspContainer" style="width: 450px; height: 140px;">
                                     <div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 450px;">
                                         <p>
@@ -82,7 +74,6 @@
                             <div class="dt-xh">
                                 <div class="addthis_sharing_toolbox"></div>
                             </div>
-
                         </div>
                     </div>
                     <!-- Noi dung Phim -->
@@ -90,12 +81,8 @@
                         <!-- <div class="vien-dt"></div> -->
                         <div class="image">
                             <a href="#">
-
                                 <img src="https://cms.megagscinemas.vn//media/77255/406x600-18x2.jpg?width=720&amp;height=405" alt="">
-
                             </a><a class="play-icon product-zoom open-popup-youtube" data-youtube-id="YjNWFVvUhwU" title="" href="javascript:void(0)"></a>
-
-
                         </div>
                         <div class="dt-2d clearfix">
                             <div class="dt-group"><div class="dt-xd">2D</div><div class="dt-cus">digital</div></div><div class="dt-group"><div class="dt-g">T13</div></div>

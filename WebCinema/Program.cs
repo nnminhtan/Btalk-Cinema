@@ -16,7 +16,7 @@ builder.Services.AddRazorPages();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<IMovieDetailRepo, EFMovieDetailRepo>();
 builder.Services.AddScoped<IMovieRepo, EFMovieRepo>();
 builder.Services.AddScoped<IGenreRepo, EFGenreRepo>();
 

@@ -3,8 +3,8 @@
     ViewData["Title"] = "LichChieu";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+@* <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> *@
 <body>
     <!--Body begin-->
     <link href="~/css/showtimes.css" rel="stylesheet" />
@@ -66,37 +66,39 @@
         {
             <div class="list-items">
                 <div class="title">
-                    <a href="blog.html">
-                        <h4>@movie.MovieName</h4>
-                    </a>
-                    <div class="item-left">
-                        <td>
-                            @if (!string.IsNullOrEmpty(movie.Poster))
-                            {@*
-                        var basePath = "/images";
-                        var fileName = product.Poster;
-                        var imagePath = basePath + "/" + fileName; *@
-                                var imagePath = Url.Content(movie.Poster); // Use Url.Content
+                    <a href="/MovieDetails/MovieDetails">
 
-                                <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
-                            }
-                        </td>
-                    </div>
+                        <h4>@movie.MovieName</h4>
+
+                        <div class="item-left">
+
+                            <td>
+                                @if (!string.IsNullOrEmpty(movie.Poster))
+                                {
+                                    @*
+                            var basePath = "/images";
+                            var fileName = product.Poster;
+                            var imagePath = basePath + "/" + fileName; *@
+                                    var imagePath = Url.Content(movie.Poster); // Use Url.Content
+                                    <a href="@movie.Trailer" class="trailer-link">
+                                        <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
+                                    </a>
+                                }
+                            </td>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="item-right">
                     <div class="span_time">
                         <span>
-                            <i class="fa-solid fa-clock">Thời lượng:</i>
-                            @movie.MovieLength
+                            <i class="fa-solid fa-clock">Thời lượng:</i>@movie.MovieLength
                         </span>
                         <span>
-                            <i class="fas fa-tags"> Thể loại:</i>
-                            @movie.Genre.GenreName
+                            <i class="fas fa-tags"> Thể loại:</i>@movie.Genre.GenreName
                         </span>
                         <span>
-                            <i class="fa-solid fa-calendar">Khởi chiếu:</i>
-                            @movie.ReleaseDate
+                            <i class="fa-solid fa-calendar">Khởi chiếu:</i>@movie.ReleaseDate
                         </span>
                     </div>
                     <div class="group_select_showtime">

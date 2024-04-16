@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Phim";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+
     <link rel="stylesheet" href="~/css/Phim.css">
     // Lọc phim đang chiếu
     var phimDangChieu = Model.Where(movie => movie.MovieState.Contains("Đang Chiếu")).ToList();
@@ -55,7 +56,7 @@
                                 <!-- Phim1 -->
                                 <div class="list-items">
                                     <div class="item-left">
-                                        <a href="/ShowTimes/ShowTimes">
+                                        <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
                                             <div class="episode-all" style="display:flex">
                                                 @if (!string.IsNullOrEmpty(movie.Poster))
                                                 {@*
@@ -72,7 +73,7 @@
                                     </div>
 
                                     <div class="item-right">
-                                        <a href="/ShowTimes/ShowTimes">
+                                        <a href="/MovieDetails/MovieDetails">
                                             <h4 class="movie-color">@movie.MovieName</h4>
                                             <p>Phim1[pg000]</p>
                                         </a>
@@ -106,7 +107,7 @@
                                 <!-- Phim1 -->
                                 <div class="list-items">
                                     <div class="item-left">
-                                        <a href="/ShowTimes/ShowTimes">
+                                        <a href="/MovieDetails/MovieDetails">
                                             <div class="episode-all" style="display:flex">
                                                 @if (!string.IsNullOrEmpty(movie.Poster))
                                                 {@*
@@ -122,7 +123,7 @@
                                         <!-- Link Product -->
                                     </div>
                                     <div class="item-right">
-                                        <a href="/ShowTimes/ShowTimes">
+                                        <a href="/MovieDetails/MovieDetails">
                                             <h4 class="movie-color">@movie.MovieName</h4>
                                             <p>Phim1[pg000]</p>
                                         </a>
@@ -140,7 +141,6 @@
                                             <div class="trailer">
                                                 <a class="open-popup-youtube" href="@movie.Trailer">
                                                     <div><i class="fa fa-play"></i></div><div>Trailer</div>
-
                                                 </a>
                                             </div>
                                         </div>
