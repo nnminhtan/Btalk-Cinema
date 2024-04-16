@@ -70,12 +70,22 @@
         @foreach (var movie in Model)
         {
             <div class="list-items">
-                <div class="title" data-movie="BakingBad" data-mct="YES" data-lct="YES" data-compare="/Baking Bad/" mvroot="Baking Bad [PG13]">
+                <div class="title">
                     <a href="blog.html">
-                        <h4>Baking Bad</h4>
+                        <h4>@movie.MovieName</h4>
                     </a>
                     <div class="item-left">
-                        <img src="~/images/baking-bad.png" />
+                        <td>
+                            @if (!string.IsNullOrEmpty(movie.Poster))
+                            {@*
+                        var basePath = "/images";
+                        var fileName = product.Poster;
+                        var imagePath = basePath + "/" + fileName; *@
+                                var imagePath = Url.Content(movie.Poster); // Use Url.Content
+
+                                <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
+                            }
+                        </td>
                     </div>
                 </div>
 
