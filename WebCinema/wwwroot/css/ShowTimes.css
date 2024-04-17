@@ -46,6 +46,16 @@
         margin: 0; /* Xóa khoảng cách mặc định */
     }
 
+    .box-selected{
+        font-weight: 100;
+        
+    }
+
+ .box-selected{
+    margin:0 auto;
+    color: red;
+    width: 402px;
+}
 .product-list {
     width: 80%;
     display: flex;
@@ -59,23 +69,25 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
+    text-align: center;
+    margin-bottom: 10px;
     h4
-
 {
+    font-size: 30px;
+    
     color: #ff0000; /* Đỏ */
 }
 
 }
-
 .item-left {
     flex: 0 0 30%;
     position: relative;
-    padding: 30px;
+    padding: 20px;
 }
 
     .item-left img {
-        width: 190px; /* Chiều rộng poster */
-        height: 238px; /* Chiều cao poster */
+        width: 200px; /* Chiều rộng poster */
+        height: 250px; /* Chiều cao poster */
         margin: 0 auto; /* Căn giữa poster */
         border: 1px solid #ccc; /* Viền poster */
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Bóng đổ poster */
@@ -99,9 +111,10 @@
 
 
 
-.item-right {
-    font-family: Tahoma;
+.item-right {   
     padding: 10px;
+    box-sizing: border-box;
+
 }
 
 .movie-image {

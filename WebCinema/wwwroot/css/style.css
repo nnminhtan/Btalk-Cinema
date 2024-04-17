@@ -362,7 +362,7 @@ ol {
 	list-style: none;
 	display: inline-block;
 	position: relative;
-	margin-right: 16px;
+	
 }
 
 .header__menu ul li.active a {
@@ -371,7 +371,7 @@ ol {
 }
 
 .header__menu ul li:hover a {
-	color: #ffffff;
+	color: #e53637;
 }
 
 .header__menu ul li:hover .dropdown {
@@ -389,12 +389,12 @@ ol {
 }
 
 .header__menu ul li .dropdown {
+	
 	position: absolute;
 	left: 0;
 	top: 82px;
-	width: 150px;
-	background: #ffffff;
-	text-align: left;
+	background: #1fe2e9;
+	text-align: center;
 	padding: 5px 0;
 	z-index: 9;
 	opacity: 0;

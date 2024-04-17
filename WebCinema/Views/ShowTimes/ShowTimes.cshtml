@@ -28,14 +28,13 @@
     <div class="box-selected">
         <div class="box-slected-1">
             <nav class="header__menu mobile-menu">
-
                 <ul>
                     <li>
                         CHỌN SUẤT CHIẾU THEO PHIM <span class="arrow_carrot-down"></span>
                         <ul class="dropdown">
                             @foreach (var movie in Model)
                             {
-                                <li><a href="./categories.html"></a>@movie.MovieName</li>
+                                <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">@movie.MovieName</a>
                             }
                         </ul>
                     </li>
@@ -65,27 +64,22 @@
         @foreach (var movie in Model)
         {
             <div class="list-items">
-                <div class="title">
-                    <a href="/MovieDetails/MovieDetails">
 
+                <div class="item-left">
+                    <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
                         <h4>@movie.MovieName</h4>
-
-                        <div class="item-left">
-
+                        <p>
                             <td>
                                 @if (!string.IsNullOrEmpty(movie.Poster))
                                 {
-                                    @*
-                            var basePath = "/images";
-                            var fileName = product.Poster;
-                            var imagePath = basePath + "/" + fileName; *@
+
                                     var imagePath = Url.Content(movie.Poster); // Use Url.Content
                                     <a href="@movie.Trailer" class="trailer-link">
                                         <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
                                     </a>
                                 }
                             </td>
-                        </div>
+                        </p>
                     </a>
                 </div>
 
@@ -95,7 +89,7 @@
                             <i class="fas fa-clock"></i><span>Thời lượng:</span>@movie.MovieLength
                         </span>
                         <span>
-                            <i class="fas fa-tags"></i><span>Thể loại:</span>@movie.Genre
+                            <i class="fas fa-tags"></i><span>Thể loại:</span>@movie.Genre.GenreName
                         </span>
                         <span>
                             <i class="fas fa-calendar"></i><span>Khởi chiếu:</span>@movie.ReleaseDate
@@ -103,7 +97,7 @@
                     </div>
                     <div class="group_select_showtime">
                         <div class="showTimeCustom ">
-                            <span class="cinema-label">Rạp Cao Thắng</span>
+                            @* <span class="cinema-label">Rạp Cao Thắng</span> *@
                             <div class="groupABC">
                                 <div class="type_movie">
                                     <a class="active">
