@@ -1,7 +1,7 @@
-﻿@model IEnumerable<WebCinema.Models.Movie>
+﻿@model WebCinema.Models.Movie
 @{
     ViewData["Title"] = "MovieDeltails";
-    var movie = Model.FirstOrDefault(); // Lấy thông tin của phim đầu tiên trong danh sách
+    //var movie = Model.FirstOrDefault(); // Lấy thông tin của phim đầu tiên trong danh sách
 }
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -21,7 +21,7 @@
         >
     </div>
 
-    @if (movie != null)
+    @if (Model != null)
     {
         <div class="banner">
             <span></span>
@@ -35,25 +35,25 @@
                                 <div class="box-left">
                                     <p class="icon-detail-yell">
                                         Thời lượng: <span>
-                                            @movie.MovieLength
+                                            @Model.MovieLength
                                         </span>
                                     </p>
                                     <p class="icon-detail-yell-2">
                                         Khởi chiếu: <span>
-                                            @movie.ReleaseDate
+                                            @Model.ReleaseDate
                                         </span>
                                     </p>
                                 </div>
                                 <div class="box-right">
                                     <p class="icon-detail-yell-1">
                                         Thể loại: <span>
-                                            @movie.Genre.GenreName
+                                            @Model.Genre.GenreName
                                         </span>
                                     </p>
                                 </div>
                             </div>
                             <div class="box2">
-                                <span>@movie.Description</span>
+                                <span>@Model.Description</span>
                             </div>
                             <div class="clearfix"></div>
                             <p class="p-bold">
@@ -67,7 +67,7 @@
                                 <div class="jspContainer" style="width: 450px; height: 140px;">
                                     <div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 450px;">
                                         <p>
-                                        </p><p><span>@movie.Description</span></p><p></p>
+                                        </p><p><span>@Model.Description</span></p><p></p>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                         <!-- <div class="vien-dt"></div> -->
                         <div class="image">
                             <a href="#">
-                                <img src="https://cms.megagscinemas.vn//media/77255/406x600-18x2.jpg?width=720&amp;height=405" alt="">
+                                <img src="@Url.Content(Model.Poster)" alt="" height=405>
                             </a><a class="play-icon product-zoom open-popup-youtube" data-youtube-id="YjNWFVvUhwU" title="" href="javascript:void(0)"></a>
                         </div>
                         <div class="dt-2d clearfix">

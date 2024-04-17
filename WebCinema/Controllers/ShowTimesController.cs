@@ -16,11 +16,17 @@ namespace WebCinema.Controllers
         }
         public async Task<IActionResult> ShowTimes()
         {
-            var movies = await _movieRepo.GetAllAsync();
-            return View(movies);
+            //var movies = await _movieRepo.GetAllAsync();
+            //return View(movies);
+            var moviesWithShowtimes = await _movieRepo.GetAllWithShowtimesAndScreentimesAsync();
+            return View(moviesWithShowtimes);
         }
 
-
-
+        [HttpPost]
+        public IActionResult SelectShowtime(int movieId, int showtimeId)
+        {
+            return RedirectToAction("BookingSeat", "Ticket", new { movieId = movieId, showtimeId = showtimeId });
+        }
     }
+
 }

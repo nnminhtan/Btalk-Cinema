@@ -3,8 +3,8 @@
     ViewData["Title"] = "LichChieu";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
-@* <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> *@
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <body>
     <!--Body begin-->
     <link href="~/css/showtimes.css" rel="stylesheet" />
@@ -92,13 +92,13 @@
                 <div class="item-right">
                     <div class="span_time">
                         <span>
-                            <i class="fa-solid fa-clock">Thời lượng:</i>@movie.MovieLength
+                            <i class="fas fa-clock"></i><span>Thời lượng:</span>@movie.MovieLength
                         </span>
                         <span>
-                            <i class="fas fa-tags"> Thể loại:</i>@movie.Genre.GenreName
+                            <i class="fas fa-tags"></i><span>Thể loại:</span>@movie.Genre
                         </span>
                         <span>
-                            <i class="fa-solid fa-calendar">Khởi chiếu:</i>@movie.ReleaseDate
+                            <i class="fas fa-calendar"></i><span>Khởi chiếu:</span>@movie.ReleaseDate
                         </span>
                     </div>
                     <div class="group_select_showtime">
@@ -121,26 +121,18 @@
                             </a><a href="javascript:void(0)" class="check-booking"><span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162662" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">23:55</span></a>
                             </div>
                             </div> *@
+                                <div class="showtime-buttons">
+                                    @foreach (var showtime in movie.Showtimes.Where(s => s.MovieId == movie.MovieId @* && s.ShowtimeDate.Date == selectedDate.Date *@))
+                                    {
+                                        <form asp-action="SelectShowtime" method="post">
+                                            <input type="hidden" name="movieId" value="@movie.MovieId" />
+                                            <input type="hidden" name="showtimeId" value="@showtime.ShowId" />
+                                            <button type="submit"> @showtime.Screentime.ScreenTime </button>
+                                        </form>
+                                    }
+                                </div>
                             </div>
                             <div class="notification">
-                            </div>
-                        </div>
-                        <div class="showTimeCustom">
-                            <span class="cinema-label">Rạp Lý Chính Thắng</span>
-                            <div class="groupABC">
-                                <div class="type_movie">
-                                    <a class="active">
-                                        <span class="ganre">2D</span>
-                                        <span class="viet_sub">Phụ đề / sub</span>
-                                    </a>
-                                    @*  </div><div class="about_showtimes" id="2d_pd_showtime">
-                                <div>
-                                <a href="javascript:void(0)" class="check-booking">
-                                <span data-cinema="LCT" namemv="SANG DEN [PG13]" txtsessionid="38988" imgmv="SANG DEN [PG13]" submv="SAN" onclick="bookingClickCustom(this)">22:40</span>
-                                </a>
-                                </div>
-                                </div> *@
-                                </div><div class="notification"></div>
                             </div>
                         </div>
                     </div>

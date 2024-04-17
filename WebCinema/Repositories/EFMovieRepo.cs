@@ -43,6 +43,14 @@ namespace WebCinema.Repositories
             _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Movie>> GetAllWithShowtimesAndScreentimesAsync()
+        {
+            return await _context.Movies
+                .Include(m => m.Showtimes)
+                    .ThenInclude(s => s.Screentime)
+                .ToListAsync();
+        }
     }
 
 

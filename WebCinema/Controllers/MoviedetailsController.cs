@@ -12,10 +12,9 @@ namespace WebCinema.Controllers
         private readonly IGenreRepo _genreRepo;
         private readonly IMovieRepo _movieRepo;
 
-        public MoviedetailsController(IMovieRepo movieRepo, IGenreRepo genreRepo , ApplicationDbContext context)
+        public MoviedetailsController(IMovieRepo movieRepo, IGenreRepo genreRepo, ApplicationDbContext context)
         {
             _context = context;
-
             _movieRepo = movieRepo;
             _genreRepo = genreRepo;
         }
@@ -27,7 +26,8 @@ namespace WebCinema.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies.FirstOrDefaultAsync(m => m.MovieId == movieId);
+            var movie = await _context.Movies.Include(m => m.Genre)
+                                             .FirstOrDefaultAsync(m => m.MovieId == movieId);
 
             if (movie == null)
             {

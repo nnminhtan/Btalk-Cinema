@@ -9,5 +9,6 @@ namespace WebCinema.Repositories
         Task AddAsync(Movie movie);
         Task UpdateAsync(Movie movie);
         Task DeleteAsync(int id);
+        Task<IEnumerable<Movie>> GetAllWithShowtimesAndScreentimesAsync();
     }
 }

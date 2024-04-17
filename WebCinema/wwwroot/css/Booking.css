@@ -22,25 +22,39 @@ p{
 
     .content-item .item-left {
         display: flex;
-        flex-grow: 2;
-        flex-direction: column; 
+        flex-grow: 8;
+        flex-direction: column;
     }
-        .content-item .item-left h3 .span_number {
-            font-family: 'Open Sans',sans-serif;
-            width: 35px;
-            height: 35px;
-            background: #f89303;
-            color: #fff;
-            text-align: center;
+
+        .content-item .item-left h3 {
+            font-family: 'UTMNeutra';
+            font-size: 24px;
+            color: #333;
             font-weight: 700;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            position: absolute;
-            left: 0;
-            line-height: 29px
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 45px;
+            line-height: 35px
         }
+
+            .content-item .item-left h3 .span_number {
+                font-family: 'Open Sans',sans-serif;
+                width: 35px;
+                height: 35px;
+                background: #f89303;
+                color: #fff;
+                text-align: center;
+                font-weight: 700;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                border: 3px solid #fff;
+                position: absolute;
+                left: 0;
+                line-height: 29px
+            }
 
         .content-item .item-left .combo-select {
             display: flex;
@@ -73,85 +87,186 @@ p{
                             margin: 0;
                         }
 
+                    .content-item .item-left .combo-select .combo-box .combo .combo-name .combo-number {
+                        display: flex;
+                        align-items: center; /* Align items vertically */
+                    }
+
+                        .content-item .item-left .combo-select .combo-box .combo .combo-name .combo-number .fa {
+                            font-size: 20px; /* Adjust the font size of plus and minus icons */
+                        }
+
+                    .content-item .item-left .combo-select .combo-box .combo .combo-name .Qlty {
+                        width: 30px; /* Adjust the width of the input field */
+                        height: 40px; /* Adjust the height of the input field */
+                        text-align: center; /* Center align text in the input field */
+                        margin: 0 10px; /* Add margin between the input field and icons */
+                    }
+
+                    .content-item .item-left .combo-select .combo-box .combo .combo-name .combo-price {
+                        margin-left: auto; /* Align the combo price to the right */
+                    }
+
 
     .content-item .item-right {
         display: flex;
-        flex-grow: 5;
+        flex-grow: 1;
         flex-direction: column;
     }
 
         .content-item .item-right .section-item {
-            background: rgb(52, 205, 0)
+            background: rgb(72, 49, 103)
         }
 
-    .content-item .head-title {
-        background-color: rgba(255,255,255,.7);
-        padding: 8px 0;
-        padding-left: 32px;
-        text-align: left;
-        position: relative;
-        margin-top: 20px
-    }
-
-        .content-item .head-title h3 {
-            font-family: 'UTMNeutra';
-            font-size: 16px;
-            color: #444;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin: 0
+        .content-item .item-right .head-title {
+            background-color: rgba(255,255,255,.7);
+            padding: 8px 0;
+            padding-left: 32px;
+            text-align: left;
+            position: relative;
+            margin-top: 20px
         }
 
-    .content-item .head-title .span_number {
-        font-family: 'Open Sans',sans-serif;
-        font-size: 24px;
-        width: 35px;
-        height: 35px;
-        background: #f89303;
-        color: #fff;
+            .content-item .item-right .head-title h3 {
+                font-family: 'UTMNeutra';
+                font-size: 16px;
+                color: #444;
+                text-transform: uppercase;
+                font-weight: 700;
+                margin: 0
+            }
+
+            .content-item .item-right .head-title .span_number {
+                font-family: 'Open Sans',sans-serif;
+                font-size: 24px;
+                width: 35px;
+                height: 35px;
+                background: #f89303;
+                color: #fff;
+                text-align: center;
+                font-weight: 700;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                border: 3px solid #fff;
+                position: absolute;
+                top: -8px;
+                left: -10px;
+                line-height: 29px
+            }
+
+        .content-item .item-right .section-item .box-ticket-info .movie-info {
+            display: flex;
+            justify-content: space-between
+        }
+
+            .content-item .item-right .section-item .box-ticket-info .movie-info .movie-info-item {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding-top: 10px;
+                padding-left: 10px
+            }
+
+            .content-item .item-right .section-item .box-ticket-info .movie-info .movie-image img {
+                display: flex;
+                align-self: flex-end;
+                width: 120px;
+                height: auto;
+                margin-top: 10px;
+                margin-right: 10px;
+            }
+
+        .content-item .item-right .section-item .box-ticket-info .box-tickets {
+            padding-top: 5px
+        }
+
+            .content-item .item-right .section-item .box-ticket-info .box-tickets h5 {
+                margin-top: 0;
+                padding-left: 10px;
+                color: #ffd455
+            }
+
+            .content-item .item-right .section-item .box-ticket-info .box-tickets table {
+                width: 100%;
+                color: white
+            }
+
+.align-right {
+    text-align: right
+}
+
+.content-item .item-right .section-item .box-ticket-info .box-tickets table tr td {
+    padding: 5px 0
+}
+
+.content-item .item-right .section-item .box-ticket-info .box-tickets table tr .td-first {
+    text-align: right;
+    color: #ffd455
+}
+
+.content-item .item-right .section-item .box-ticket-info .box-tickets .select-drink {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative
+}
+
+.content-item .item-right .section-item .box-ticket-info .box-tickets table .tr_first {
+    border-bottom: 1px solid rgba(255,255,255,.15)
+}
+
+    .content-item .item-right .section-item .box-ticket-info .box-tickets table .tr_first td {
         text-align: center;
-        font-weight: 700;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-        border: 3px solid #fff;
-        position: absolute;
-        top: -8px;
-        left: -10px;
-        line-height: 29px
+        padding: 5px 0
     }
 
-    .content-item .box-info-pay .box-input {
-        padding: 10px 15px
+.content-item .item-right .section-item .box-ticket-info .box-tickets table .tr_second td {
+    padding-top: 15px;
+    padding-bottom: 0
+}
+
+.content-item .item-right .section-item .box-ticket-info .box-tickets table .total-text- {
+    color: #ffd455
+}
+
+.content-item .item-right .section-item .box-ticket-info .box-tickets table .total-numb {
+    font-size: 24px;
+    font-weight: 700
+}
+
+.content-item .item-right .section-item .box-info-pay .box-input {
+    padding: 10px 15px
+}
+
+    .content-item .item-right .section-item .box-info-pay .box-input input[type="text"] {
+        background-color: rgba(255,255,255,.2);
+        font-size: 12px;
+        border: 0;
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 8px 10px;
+        outline: none
     }
 
-        .content-item .box-info-pay .box-input input[type="text"] {
-            background-color: rgba(255,255,255,.2);
-            font-size: 12px;
-            border: 0;
-            width: 100%;
-            margin-bottom: 5px;
-            padding: 8px 10px;
-            outline: none
-        }
-
-        .content-item .box-info-pay .box-input input[type="text"]::-webkit-input-placeholder {
+        .content-item .item-right .section-item .box-info-pay .box-input input[type="text"]::-webkit-input-placeholder {
             color: #fff
         }
 
-        .content-item .box-info-pay .box-input input[type="text"]:-moz-placeholder {
+        .content-item .item-right .section-item .box-info-pay .box-input input[type="text"]:-moz-placeholder {
             color: #fff
         }
 
-        .content-item .box-info-pay .box-input input[type="text"]::-moz-placeholder {
+        .content-item .item-right .section-item .box-info-pay .box-input input[type="text"]::-moz-placeholder {
             color: #fff
         }
 
-        .content-item .box-info-pay .box-input input[type="text"]:-ms-input-placeholder {
+        .content-item .item-right .section-item .box-info-pay .box-input input[type="text"]:-ms-input-placeholder {
             color: #fff
         }
 
-    /*.content-item .box-method-pay .box-card {
+/*.content-item .box-method-pay .box-card {
         padding: 10px 15px
     }
 
@@ -281,11 +396,11 @@ p{
     color: #ffd555
 }*/
 
-.content-item .item-right .box-pay {
+.content-item .item-right .section-item .box-pay {
     margin-top: 20px
 }
 
-    .content-item .item-right .box-pay span {
+    .content-item .item-right .section-item .box-pay span {
         width: 150px;
         height: 46px;
         float: right;
@@ -293,27 +408,27 @@ p{
         margin-top: -10px
     }
 
-.content-item .item-right .box-pay input[type="submit"], .content-item .item-right .box-pay input[type="button"] {
-    width: 150px;
-    height: 46px;
-    font-size: 16px;
-    background: #ffcf29;
-    border: 0;
-    color: #3e3e3e;
-    font-weight: 700;
-    outline: none;
-    text-align: left
-}
-
-.content-item .item-right .box-pay input[type="button"] {
-    padding-left: 23px
-}
-
-    .content-item .item-right .box-pay input[type="submit"]:hover, .content-item .item-right .box-pay input[type="button"]:hover {
-        background: #FFBE00
+    .content-item .item-right .section-item .box-pay input[type="submit"] /*, .content-item .item-right .box-pay input[type="button"]*/ {
+        width: 150px;
+        height: 46px;
+        font-size: 16px;
+        background: #ffcf29;
+        border: 0;
+        color: #3e3e3e;
+        font-weight: 700;
+        outline: none;
+        text-align: left
     }
 
-.div-icombo {
+    .content-item .item-right .section-item .box-pay input[type="submit"] {
+        padding-left: 23px
+    }
+
+        .content-item .item-right .section-item .box-pay input[type="submit"]:hover, /*.content-item .item-right .box-pay input[type="button"]:hover*/ {
+            background: #FFBE00
+        }
+
+/*.div-icombo {
     margin-bottom: 20px;
 }
 
@@ -348,7 +463,7 @@ p{
 .jspPane {
     width: 100%;
 }
-
+*/
 .img-loading {
     position: absolute;
     z-index: 99;

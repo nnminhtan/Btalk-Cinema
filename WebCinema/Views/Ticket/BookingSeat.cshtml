@@ -1,9 +1,20 @@
-﻿
+﻿@model WebCinema.ViewModels.BookingSeatViewModel
+
 @{
     ViewData["Title"] = "BookingSeat";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+    // Get the date part of ShowtimeDate
+    string date = Model.Showtime.ShowtimeDate.ToShortDateString();
+
+    // // Get the ScreenTime based on the ScreentimeId in Showtime
+    // string time = "";
+    // if (Model.Showtime != null && Model.Showtime.Screentime != null)
+    // {
+    //     time = Model.Showtime.Screentime.ToString(@"hh\:mm");
+    // }
 }
 <link href="~/css/booking.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div class="content-item">
     <div class="item-left">
         <h3><span class="span_number">1</span><span></span><span>CHỌN VỊ TRÍ</span></h3>
@@ -37,9 +48,12 @@
                                 @for (char col = 'A'; col <= 'H'; col++)
                                 {
                                     <td>
-                                        <p class="seat" data-seat-id="'@($" PC8{col}{row}")'"
-                                           onclick="returnSeatValue('@($" PC8{col}{row}")')" style="cursor: pointer;">
-                                            <span class="seat-text">@($"{col}{row}")</span>
+                                        @* Generate seat ID *@
+                                        @{
+                                            var seatId = $"PC8_{col}{row}";
+                                        }
+                                        <p class="seat" data-seat-id="@seatId">
+                                            <span class="seat-text" style="color: black;">@($"{col}{row}")</span>
                                             <img class="seat-pic" src="~/images/seat/seat_empty.png" alt="Seat @($" PC8{col}{row}")" style="display: block; margin: 0 auto;" />
                                         </p>
                                     </td>
@@ -55,40 +69,69 @@
         <div class="combo-select">
             <div class="combo-box">
                 <div class="combo">
+                    <img src="https://cms.megagscinemas.vn//media/76070/combo-share.png" alt="">
+                    <div class="combo-info">
+                        <h4>Combo Bắp và Coca</h4>
+                        <div class="combo-number">
+                            <i class="fa fa-minus-circle decrease"></i>
+                            <span><input type="text" value="0" class="Qlty" readonly=""></span>
+                            <i class="fa fa-plus-circle increase"></i>
+                            <span class="combo-price">80000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="combo">
                     <img src="https://cms.megagscinemas.vn//media/76090/popcorn-caramel-40oz.png" alt="">
                     <div class="combo-info">
-                        <h4>Combo Name</h4>
+                        <h4>Bắp Caramel</h4>
                         <div class="combo-number">
-
+                            <i class="fa fa-minus-circle decrease"></i>
+                            <span><input type="text" value="0" class="Qlty" readonly=""></span>
+                            <i class="fa fa-plus-circle increase"></i>
+                            <span class="combo-price">45000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="combo">
+                    <img src="https://i.pngimg.me/thumb/f/720/m2i8A0G6N4H7i8K9.jpg" alt="">
+                    <div class="combo-info">
+                        <h4>Coca</h4>
+                        <div class="combo-number">
+                            <i class="fa fa-minus-circle decrease"></i>
+                            <span><input type="text" value="0" class="Qlty" readonly=""></span>
+                            <i class="fa fa-plus-circle increase"></i>
+                            <span class="combo-price">40000</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div> 
+    </div>
     <div class="item-right">
         <div class="section-item">
             <div class="box-ticket-info">
-                <h3>Movie Name</h3>
-                <p>Theatre name </p>
-                <p>Date time</p>
-                <p>Room name</p>
-                <p>seatid</p>
+                <div class="movie-info">
+                    <div class="movie-info-item">
+                        <h3>@Model.Movie.MovieName</h3>
+                        <p>BTalk Cinema</p>
+                        <p>@Model.Showtime.ShowtimeDate + @Model.Showtime.ScreenTimeId</p>
+                        <p>@Model.Showtime.Room.RoomName</p>
+                    </div>
+                    <div class="movie-image">
+                        <img src=@Url.Content("~/images/Baking-Bad.png") />
+                    </div>
+                </div>
                 <div class="box-tickets">
-                    <h5>Loại vé:</h5>
-                    <table class="table-box-1">
-                        <tbody><tr><td class="td-first">IT - Adult Standard</td><td class="td-second align-right">1 x 65,000 VND</td></tr><tr id="seatrow1"><td class="yseat" colspan="2">(A1)</td></tr></tbody>
+                    <h5>Số vé:</h5>
+                    <table class="table">
+                        <tbody id="ticketTableBody">
+                            <!-- Table rows will be dynamically added here -->
+                        </tbody>
                     </table>
                     <h3 class="select-drink">CHỌN ĐỒ ĂN &amp; THỨC UỐNG</h3>
-                    <table class="table-box-2">
-
-                        <tbody>
-                            <tr class="tr_second align-right">
-                                <td colspan="2"><span class="total-text-">Tổng giá tiền</span></td>
-                            </tr>
-                            <tr class="align-right">
-                                <td colspan="2"><span class="total-numb">65,000</span><span style="font-size: 24px; font-weight: bold;">VNĐ</span></td>
-                            </tr>
+                    <table class="table">
+                        <tbody id="comboTableBody">
+                            <!-- Table rows will be dynamically added here -->
                         </tbody>
                     </table>
                 </div>
@@ -102,85 +145,29 @@
                     <div class="show-error err">
                         <span></span>
                     </div>
-                    <input name="ctl00$ContentPlaceHolder1$txtCardName" type="text" id="txtCardName" class="infor-name" placeholder="Họ và Tên">
+                    <form method="post" asp-action="Pay" asp-controller="Home">
+                        <input name="txtCardName" type="text" id="txtCardName" placeholder="Họ và Tên">
 
-                    <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" id="txtEmail" class="infor-name" placeholder="Email">
+                        <input name="txtEmail" type="text" id="txtEmail" placeholder="Email">
 
-                    <input type="text" id="txtCustPhone" class="infor-phone" placeholder="Số điện thoại">
+                        <input type="text" id="txtCustPhone" placeholder="Số điện thoại">
+                    </form>
                 </div>
             </div>
-            @* <div class="box-method-pay">
-                <div class="head-title">
-                    <h3>PHƯƠNG THỨC THANH TOÁN</h3>
-                    <span class="span_number">4</span>
-                </div>
-                <div class="show-error-tt err">
-                    <span></span>
-                </div>
-                <div class="box-card">
-                    <ul>
-                        <li>
-                            <input type="radio" name="card-group" id="check_01" value="Credit Card">
-                            <label for="check_01"><span></span><b>Thẻ Tín Dụng (Credit / Debit Card / Apple Pay)</b></label>
-                            <div class="booking-debit-card">
-                                <img src="Images/home/booking-debit-card.png" alt="">
-                            </div>
-                        </li>
-                        <li>
-                            <input type="radio" name="card-group" id="check_02" value="ATM">
-                            <label for="check_02"><span></span><b>Thẻ Nội Địa (ATM Card)</b></label>
-                            <div class="booking-atm-card">
-                                <img src="Images/home/booking-atm-card.png" alt="">
-                            </div>
-                        </li>
-                        <li>
-                            <input type="radio" name="card-group" id="check_momo" value="MM">
-                            <label for="check_momo"><span></span><b>MoMo</b></label>
-
-                        </li>
-                        <li>
-                            <input type="radio" name="card-group" id="check_zalopay" value="ZP">
-                            <label for="check_zalopay"><span></span><b>Ví ZaloPay</b></label>
-
-                        </li>
-                        <li>
-                            <input type="radio" name="card-group" id="check_vnpay" value="VNP">
-                            <label for="check_vnpay"><span></span><b>VNPay</b></label>
-
-                        </li>
-                    </ul>
-                    <div class="check-agree">
-                        <input id="chkTerms" type="checkbox" name="ctl00$ContentPlaceHolder1$chkTerms">
-                        <label for="chkTerms">
-                            <span></span>
-                            <b>Tôi đã đọc và đồng ý với <a href="/chinh-sach-thanh-toan-ve-truc-tuyen/" target="_blank">Chính sách thanh toán vé trực tuyến</a></b>
-
-                        </label>
-                        <div style="color:#fb0202">
-                            <p>Vé đã mua không thể đổi hoặc hoàn tiền.</p>
-                            <p>Mã vé sẽ được gửi qua tin nhắn SMS và Email đã nhập.</p>
-                        </div>
-                    </div>
-                </div>
-            </div> *@
             <div class="box-pay">
                 <span>
                     <span class="img-loading" style="position: absolute; top: 45%">
                         <img src="~/images//loading.gif" style="width: 25px" alt="loading" />
                     </span>
-                    <input type="button" value="Thanh Toán" />
+                    <form id="paymentForm" asp-action="Pay" asp-controller="Home">
+                        <!-- Other form fields go here -->
+                        <input id="paymentButton" type="submit" name="payment" value="Thanh Toán" />
+                    </form>
                 </span>
             </div>
         </div>
     </div>
 </div>
 
-
-<script>
-    function returnSeatValue(seatId) {
-        // You can use this function to return the seat value or perform any other action
-        alert(seatId); // For demonstration, it just shows an alert with the seat ID
-    }
-</script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/booking.js"></script>
