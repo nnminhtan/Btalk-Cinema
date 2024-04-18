@@ -3,7 +3,7 @@
     ViewData["Title"] = "Phim";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 
-    <link rel="stylesheet" href="~/css/Phim.css">
+    <link rel="stylesheet" href="~/css/Movie.css">
     // Lọc phim đang chiếu
     var phimDangChieu = Model.Where(movie => movie.MovieState.Contains("Đang Chiếu")).ToList();
 
@@ -50,22 +50,24 @@
                 <div class="tab-content tab-content-custom">
                     <!-- Phim Hot -->
                     <div id="movie-dc-all" class="tab-pane fade active in" style="min-height: 218px">
-                        @foreach (var movie in Model.Where(m => m.MovieState.Contains("Đang Chiếu")))
-                        {
-                            <div class="movie-hot clearfix">
-                                <!-- Phim1 -->
+
+                        <div class="movie-hot clearfix">
+                            <!-- Phim1 -->
+                            @foreach (var movie in Model.Where(m => m.MovieState.Contains("Đang Chiếu")))
+                            {
                                 <div class="list-items">
                                     <div class="item-left">
                                         <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
-                                            <div class="episode-all" style="display:flex">
+                                            <div class="episode-all" >
                                                 @if (!string.IsNullOrEmpty(movie.Poster))
-                                                {@*
+                                                {
+                                                    @*
                                             var basePath = "/images";
                                             var fileName = product.Poster;
                                             var imagePath = basePath + "/" + fileName; *@
                                                     var imagePath = Url.Content(movie.Poster); // Use Url.Content
 
-                                                    <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
+                                                    <img src="@imagePath" alt="Movie Poster" />
                                                 }
                                             </div>
                                         </a>
@@ -79,10 +81,11 @@
                                         </a>
                                         <p class="icon-clock">thời lượng: <span>@movie.MovieLength</span></p>
                                         <p class="icon-type">Thể Loại: <span>@movie.Genre.GenreName</span></p>
-                                        <p class="icon-calendar">Khởi Chiếu: <span>@movie.ReleaseDate</span></p>
-                                        <div class="movie-2d">
-                                            <a href="#"><span>2D</span></a><a href="#"><span>K</span></a>
-                                        </div>
+                                        <p class="icon-calendar">Khởi Chiếu: <span>@movie.ReleaseDate.ToShortDateString()</span></p>
+                                        <a class="active">
+                                                <span class="ganre">2D</span>
+                                                <span class="viet_sub">Phụ đề / sub</span>
+                                            </a>                                       
                                         <div class="movie-tool">
                                             <div class="imdb">
                                                 <div data-imdb-id="1133" class="score" imdb=""></div>
@@ -91,33 +94,34 @@
                                             <div class="trailer">
                                                 <a class="open-popup-youtube" href="@movie.Trailer">
                                                     <div><i class="fa fa-play"></i></div><div>Trailer</div>
-
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                }
                             </div>
-                        }
+                            
                     </div>
                     <div id="movie-sc-all" class="tab-pane fade" style="min-height: 218px">
-                        @foreach (var movie in Model.Where(m => m.MovieState.Contains("Sắp Chiếu")))
-                        {
+                            
                             <div class="movie-hot clearfix">
                                 <!-- Phim1 -->
+                            @foreach (var movie in Model.Where(m => m.MovieState.Contains("Sắp Chiếu")))
+                            {
                                 <div class="list-items">
                                     <div class="item-left">
                                         <a href="/MovieDetails/MovieDetails">
                                             <div class="episode-all" style="display:flex">
-                                                @if (!string.IsNullOrEmpty(movie.Poster))
-                                                {@*
+                                                    @if (!string.IsNullOrEmpty(movie.Poster))
+                                                    {@*
                                             var basePath = "/images";
                                             var fileName = product.Poster;
                                             var imagePath = basePath + "/" + fileName; *@
-                                                    var imagePath = Url.Content(movie.Poster); // Use Url.Content
+                                                        var imagePath = Url.Content(movie.Poster); // Use Url.Content
 
                                                     <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
-                                                }
+                                                    }
                                             </div>
                                         </a>
                                         <!-- Link Product -->
@@ -146,8 +150,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
+                                }
+                            </div>                          
                     </div>
                 </div>
             </div>

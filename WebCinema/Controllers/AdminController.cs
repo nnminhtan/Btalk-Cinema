@@ -113,7 +113,7 @@ namespace WebCinema.Controllers
                 var existingMovie = await
 
                 _movieRepo.GetByIdAsync(id); // Giả định có phương thức GetByIdAsync
-                                                     // Giữ nguyên thông tin hình ảnh nếu không có hình mới được tải lên
+                                             // Giữ nguyên thông tin hình ảnh nếu không có hình mới được tải lên
                 if (poster == null)
                 {
                     movie.Poster = existingMovie.Poster;
@@ -170,13 +170,16 @@ namespace WebCinema.Controllers
             return View(movie);
         }
         // Xử lý xóa sản phẩm
-        public async Task<IActionResult> DeleteConfirmed(int MovieId)
+        [HttpPost, ActionName("DeleteConfirmed")]
+        [ValidateAntiForgeryToken]  // Add this attribute
+
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (MovieId <= 0)  // Check for non-positive values
+            if (id <= 0)  // Check for non-positive values
             {
                 return BadRequest("Invalid Movie ID");  // Handle invalid ID
             }
-            await _movieRepo.DeleteAsync(MovieId);
+            await _movieRepo.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> DashBoard()

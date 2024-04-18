@@ -101,8 +101,10 @@ span.seat-text {
 }
 
 img {
+
 	max-width: 100%;
 }
+
 
 input:focus,
 select:focus,

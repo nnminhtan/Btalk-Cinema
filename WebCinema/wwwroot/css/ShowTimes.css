@@ -2,16 +2,38 @@
     background-color: lightgrey;
 }
 /* Định dạng menu dropdown */
-.box-selected {
-    width: 80%;
-    /*height: 40px;*/
-    font-size: 25px;
-    display: flex; /* Sử dụng flexbox để các hộp nằm cùng hàng */
-    align-items: center;
-    justify-content: center;
-    pae
-    margin: auto;
+.booking-fixed {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
 }
+
+.box-selected {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  
+}
+
+label {
+  
+    margin-bottom: 5px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+    select:focus {
+        outline: none;
+        border-color: #2ecc71;
+    }
 
     /*.box-selected .box-selected-1 {
         color: #ffd800;*/ /* Màu chữ */
@@ -71,23 +93,16 @@
     overflow: hidden;
     text-align: center;
     margin-bottom: 10px;
-    h4
-{
+    h4{
     font-size: 30px;
     
     color: #ff0000; /* Đỏ */
 }
 
 }
-.item-left {
-    flex: 0 0 30%;
-    position: relative;
-    padding: 20px;
-}
-
     .item-left img {
         width: 200px; /* Chiều rộng poster */
-        height: 250px; /* Chiều cao poster */
+        height: 200px; /* Chiều cao poster */
         margin: 0 auto; /* Căn giữa poster */
         border: 1px solid #ccc; /* Viền poster */
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Bóng đổ poster */

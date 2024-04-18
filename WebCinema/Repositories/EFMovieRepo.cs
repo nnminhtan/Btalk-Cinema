@@ -51,6 +51,13 @@ namespace WebCinema.Repositories
                     .ThenInclude(s => s.Screentime)
                 .ToListAsync();
         }
+        //public async Task<IEnumerable<Movie>> GetSelectedDateFromDatabase()
+        //{
+        //    return await _context.Movies
+        //        .Include(m => m.da)
+        //            .ThenInclude(s => s.Screentime)
+        //        .ToListAsync();
+        //}
     }
 
 

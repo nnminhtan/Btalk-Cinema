@@ -6,8 +6,9 @@
     width: auto; /* Chiều rộng tự động */
 }
 
-.list-items  {
-    width: 50%;
+.list-items {
+    width: 40%;
+    margin: 0 auto;
     display: flex;
     margin-bottom: 20px;
     border: 1px solid #ddd; /* Đổi màu viền nếu cần */
@@ -66,9 +67,12 @@
 }
 
 
-.movie-image {
-    width: 100%;
-    height: auto;
+.item-left  {
+    width: 200px; /* Chiều rộng poster */
+    height: 200px; /* Chiều cao poster */
+    margin: 0 auto; /* Căn giữa poster */
+    border: 1px solid #ccc; /* Viền poster */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Bóng đổ poster */
 }
 
 /* Thiết kế phần tử con */
@@ -78,7 +82,7 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.7); /* Màu nền của phần tử */
     color: #fff; /* Màu chữ của phần tử */
-    padding: 5px;
+    padding: 3px;
 }
 
 .icon-clock,

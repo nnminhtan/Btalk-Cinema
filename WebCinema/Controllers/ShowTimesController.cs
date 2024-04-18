@@ -7,20 +7,21 @@ namespace WebCinema.Controllers
 {
     public class ShowTimesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        
         private readonly IGenreRepo _genreRepo;
         private readonly IMovieRepo _movieRepo;
 
-        public ShowTimesController(IMovieRepo movieRepo, IGenreRepo genreRepo, ApplicationDbContext context)
+        public ShowTimesController(IMovieRepo movieRepo, IGenreRepo genreRepo)
         {
            
             _movieRepo = movieRepo;
             _genreRepo = genreRepo;
-            _context = context;
+            
         }
-        public async Task<IActionResult> ShowTimes()
+        public async Task<IActionResult> ShowTimes(DateTime selectedDate)
         {
-
+          //  DateTime selectedDate = _movieRepo.GetSelectedDateFromDatabase();
+            ViewBag.SelectedDate = selectedDate;
             var movies = await _movieRepo.GetAllAsync();
             //return View(movies);                                            
             var moviesWithShowtimes = await _movieRepo.GetAllWithShowtimesAndScreentimesAsync();
@@ -32,6 +33,8 @@ namespace WebCinema.Controllers
         {
             return RedirectToAction("BookingSeat", "Ticket", new { movieId = movieId, showtimeId = showtimeId });
         }
+        
+
     }
 
 }

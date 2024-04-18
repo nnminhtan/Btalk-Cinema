@@ -2,9 +2,15 @@
 @{
     ViewData["Title"] = "LichChieu";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+    //DateTime selectedDate = ViewBag.SelectedDate != null ? (DateTime)ViewBag.SelectedDate : DateTime.Now;
+    //DateTime selectedDate = ViewBag.SelectedDate;
+  //  DateTime selectedDate = DateTime.Now;
+
 }
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
 <body>
     <!--Body begin-->
     <link href="~/css/showtimes.css" rel="stylesheet" />
@@ -26,113 +32,91 @@
 
     <!--Combo box-->
     <div class="box-selected">
-        <div class="box-slected-1">
-            <nav class="header__menu mobile-menu">
-                <ul>
-                    <li>
-                        CHỌN SUẤT CHIẾU THEO PHIM <span class="arrow_carrot-down"></span>
-                        <ul class="dropdown">
-                            @foreach (var movie in Model)
-                            {
-                                <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">@movie.MovieName</a>
-                            }
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="box-selected-2">
-            <nav class="header__menu mobile-menu">
-                <ul>
-                    <li>
-                        CHỌN NGÀY CHIẾU <span class="arrow_carrot-down"></span>
-                        <ul class="dropdown">
-                            @for (int i = 0; i < 5; i++)
-                            {
-                                <li>
-                                    <a href="#" class="select-option">@DateTime.Today.AddDays(i).ToShortDateString()</a>
-                                </li>
-                            }
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+
+
+
+        <li class="nav-item">
+            @for (int i = 0; i < 5; i++)
+            {
+                <a class="nav-link active show" id="pills-popular-tab-0" data-toggle="pill" href="#pills-popular-0" role="tab" aria-controls="pills-popular-0" aria-selected="true">
+                    <label for="dateSelect">NGÀY CHIẾU</label>
+
+                    @DateTime.Today.AddDays(i).ToShortDateString()
+                    <div class="product-list"></div>
+                </a>
+            }
+        </li>
     </div>
-    <div class="product-list">
-        <!--Add Film-->
-        @foreach (var movie in Model)
-        {
-            <div class="list-items">
+        <div class="product-list">
+            <!--Add Film-->
+            @foreach (var movie in Model)
+            {
+                <div class="list-items">
 
-                <div class="item-left">
-                    <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
-                        <h4>@movie.MovieName</h4>
-                        <p>
-                            <td>
-                                @if (!string.IsNullOrEmpty(movie.Poster))
-                                {
-
-                                    var imagePath = Url.Content(movie.Poster); // Use Url.Content
-                                    <a href="@movie.Trailer" class="trailer-link">
-                                        <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
-                                    </a>
-                                }
-                            </td>
-                        </p>
-                    </a>
-                </div>
-
-                <div class="item-right">
-                    <div class="span_time">
-                        <span>
-                            <i class="fas fa-clock"></i><span>Thời lượng:</span>@movie.MovieLength
-                        </span>
-                        <span>
-                            <i class="fas fa-tags"></i><span>Thể loại:</span>@movie.Genre.GenreName
-                        </span>
-                        <span>
-                            <i class="fas fa-calendar"></i><span>Khởi chiếu:</span>@movie.ReleaseDate
-                        </span>
-                    </div>
-                    <div class="group_select_showtime">
-                        <div class="showTimeCustom ">
-                            @* <span class="cinema-label">Rạp Cao Thắng</span> *@
-                            <div class="groupABC">
-                                <div class="type_movie">
-                                    <a class="active">
-                                        <span class="ganre">2D</span>
-                                        <span class="viet_sub">Phụ đề / sub</span>
-                                    </a>
-                                </div>
-                                @* <div class="about_showtimes" id="2d_pd_showtime">
-                            <div>
-                            <a href="javascript:void(0)" class="check-booking">
-                            <span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162383" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">22:00</span>
-                            </a>
-                            <a href="javascript:void(0)" class="check-booking">
-                            <span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162498" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">23:00</span>
-                            </a><a href="javascript:void(0)" class="check-booking"><span data-cinema="MCT" namemv="Baking Bad [PG13]" txtsessionid="162662" imgmv="Baking Bad [PG13]" submv="SAN" onclick="bookingClickCustom(this)">23:55</span></a>
-                            </div>
-                            </div> *@
-                                <div class="showtime-buttons">
-                                    @foreach (var showtime in movie.Showtimes.Where(s => s.MovieId == movie.MovieId @* && s.ShowtimeDate.Date == selectedDate.Date *@))
+                    <div class="item-left">
+                        <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
+                            <h4>@movie.MovieName</h4>
+                            <p>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(movie.Poster))
                                     {
-                                        <form asp-action="SelectShowtime" method="post">
-                                            <input type="hidden" name="movieId" value="@movie.MovieId" />
-                                            <input type="hidden" name="showtimeId" value="@showtime.ShowId" />
-                                            <button type="submit"> @showtime.Screentime.ScreenTime </button>
-                                        </form>
+
+                                        var imagePath = Url.Content(movie.Poster); // Use Url.Content
+                                        <a href="@movie.Trailer" class="trailer-link">
+                                            <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
+                                        </a>
                                     }
+                                </td>
+                            </p>
+                        </a>
+                    </div>
+
+                    <div class="item-right">
+                        <div class="span_time">
+                            <span>
+                                <i class="fas fa-clock"></i><span>Thời lượng:</span>@movie.MovieLength
+                            </span>
+                            <span>
+                                <i class="fas fa-tags"></i><span>Thể loại:</span>@movie.Genre.GenreName
+                            </span>
+                            <span>
+                                <i class="fas fa-calendar"></i><span>Khởi chiếu:</span>@movie.ReleaseDate
+                            </span>
+                        </div>
+                        <div class="group_select_showtime">
+                            <div class="showTimeCustom ">
+                                @* <span class="cinema-label">Rạp Cao Thắng</span> *@
+                                <div class="groupABC">
+                                    <p>@movie.Description</p>
+                                    <div class="type_movie">
+                                        <a class="active">
+                                            <span class="ganre">2D</span>
+                                            <span class="viet_sub">Phụ đề / sub</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="showtime-buttons">
+                                        @foreach (var showtime in movie.Showtimes.Where(s => s.MovieId == movie.MovieId && s.Movie.MovieName == movie.MovieName @* && s.ShowtimeDate.Date == selectedDate.Date *@))
+                                        {
+                                            <form asp-action="SelectShowtime" method="post">
+                                                <input type="hidden" name="movieId" value="@showtime.MovieId" />
+                                                <input type="hidden" name="showtimeId" value="@showtime.ShowId" />
+                                                <button type="submit"> @showtime.Screentime.ScreenTime </button>
+                                            </form>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="notification">
+                                <div class="notification">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+
+
+   
+  
 
 </body>
