@@ -1,9 +1,10 @@
-﻿@model WebCinema.Models.Movie
+﻿
+@model WebCinema.Models.Showtime
 @using Microsoft.AspNetCore.Mvc.Rendering
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = "Display Movie";
+    ViewData["Title"] = "Add ShowTime";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <!doctype html>
@@ -12,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Display</title>
+    <title>Showtime</title>
     <link rel="shortcut icon" type="image/png" href="~/Admin/images/logos/Logo.png" />
     <link rel="stylesheet" href="~/Admin/css/styles.min.css" />
 </head>
@@ -125,18 +126,42 @@
                         <div class="card-body">
                             <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                                 <div class="mb-3 mb-sm-0">
-                                    <h5 class="card-title fw-semibold">Display all the Movies</h5>
-                                    <div>
-                                        <p>Price: @Model.TotalCost</p>
-                                        <p>@Model.Description</p>
-                                        @if (!string.IsNullOrEmpty(Model.Poster))
-                                        {
+                                    <h5 class="card-title fw-semibold">Add a Showtime</h5>
+                                    <form asp-action="AddShowtime" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label asp-for="MovieId">Movie Name</label>
+                                            <select asp-for="MovieId" asp-items="ViewBag.Movies"
+                                                        class="form-control"></select>
+                                            @Html.ValidationMessageFor(m => m.Movie, "", new { @class = "text-danger" })
 
-                                            var imagePath = Url.Content(Model.Poster); // Use Url.Content
-                                            <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
-                                        }
-                                    </div>
-                                    <a asp-action="Index">Back to List</a>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="RoomId">Room Name</label>
+@*                                             <input type="hidden" asp-for="RoomId" />
+ *@                                            <select asp-for="RoomId" asp-items="ViewBag.Rooms"
+                                                    class="form-control"></select>
+                                            @Html.ValidationMessageFor(m => m.Room, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ShowtimeDate"></label>
+                                            <input type="date" asp-for="ShowtimeDate" class="form-control" value="@DateTime.Now.ToString("dd-MM-yyyy")" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ScreenTimeId">Screen Time</label>
+                                            <select asp-for="ScreenTimeId" asp-items="ViewBag.Screentimes"
+                                                    class="form-control"></select>
+                                            @Html.ValidationMessageFor(m => m.Screentime, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="TotalRevenue"></label>
+                                            <textarea asp-for="TotalRevenue" class="form-control"></textarea>
+                                            <span asp-validation-for="TotalRevenue" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -155,4 +180,3 @@
     <script src="~/Admin/js/dashboard.js"></script>
 </body>
 </html>
-

@@ -27,5 +27,10 @@ namespace WebCinema.Repositories
                 .Include(s => s.Screentime)
                 .FirstOrDefaultAsync(s => s.ShowId == id);
         }
+        public async Task AddAsync(Showtime showtime)
+        {
+            _context.Showtimes.Add(showtime);
+            await _context.SaveChangesAsync();
+        }
     }
 }

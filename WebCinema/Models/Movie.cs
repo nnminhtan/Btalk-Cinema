@@ -22,6 +22,11 @@ namespace WebCinema.Models
         public Genre? Genre { get; set; }
 
         public List<Showtime> Showtimes { get; set; }
+        public Movie()
+        {
+            // Initialize Showtimes property as an empty list
+            Showtimes = new List<Showtime>();
+        }
         //public ICollection<Showtime> Showtimes { get; set; }
     }
 }

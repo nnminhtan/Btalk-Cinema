@@ -253,7 +253,7 @@ namespace WebCinema.Migrations
 
                     b.HasKey("ComboId");
 
-                    b.ToTable("Combos");
+                    b.ToTable("Combos", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Genre", b =>
@@ -270,7 +270,7 @@ namespace WebCinema.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Movie", b =>
@@ -323,7 +323,7 @@ namespace WebCinema.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Room", b =>
@@ -340,7 +340,7 @@ namespace WebCinema.Migrations
 
                     b.HasKey("RoomId");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Screentime", b =>
@@ -356,7 +356,7 @@ namespace WebCinema.Migrations
 
                     b.HasKey("ScreenTimeId");
 
-                    b.ToTable("Screentimes");
+                    b.ToTable("Screentimes", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Seat", b =>
@@ -372,7 +372,7 @@ namespace WebCinema.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Seats");
+                    b.ToTable("Seats", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Showtime", b =>
@@ -410,7 +410,7 @@ namespace WebCinema.Migrations
 
                     b.HasIndex("ScreenTimeId");
 
-                    b.ToTable("Showtimes");
+                    b.ToTable("Showtimes", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.Ticket", b =>
@@ -457,7 +457,7 @@ namespace WebCinema.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
             modelBuilder.Entity("WebCinema.Models.TicketInfo", b =>
@@ -484,7 +484,7 @@ namespace WebCinema.Migrations
 
                     b.HasIndex("TicketID");
 
-                    b.ToTable("TicketInfos");
+                    b.ToTable("TicketInfos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

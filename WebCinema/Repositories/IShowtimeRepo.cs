@@ -7,5 +7,6 @@ namespace WebCinema.Repositories
         Task<List<Showtime>> GetByMovieIdAsync(int movieId);
 
         Task<Showtime> GetByIdAsync(int id);
+        Task AddAsync(Showtime showtime);
     }
 }

@@ -27,9 +27,22 @@ namespace WebCinema.Repositories
             // lấy thông tin kèm theo category
             return await _context.Movies.Include(p => p.Genre).FirstOrDefaultAsync(p => p.MovieId == id);
         }
+        public async Task<Showtime> GetByMovieIdAsync(int id)
+        {
+            // return await _context.Products.FindAsync(id);
+            // lấy thông tin kèm theo category
+            return await _context.Showtimes
+                .FirstOrDefaultAsync(p => p.MovieId == id);
+
+        }
         public async Task AddAsync(Movie movie)
         {
             _context.Movies.Add(movie);
+            await _context.SaveChangesAsync();
+        }
+        public async Task AddShowtimeAsync(Showtime showtime)
+        {
+            _context.Showtimes.Add(showtime);
             await _context.SaveChangesAsync();
         }
         public async Task UpdateAsync(Movie movie)
@@ -50,6 +63,14 @@ namespace WebCinema.Repositories
                 .Include(m => m.Showtimes)
                     .ThenInclude(s => s.Screentime)
                 .ToListAsync();
+        }
+        public async Task<IEnumerable<Movie>> GetAllShowAsync(int movieId)
+        {
+            return await _context.Movies.Where(x => x.MovieId == movieId).ToListAsync();
+        }
+        public async Task<Movie> GetShowByMovieIdAsync(int id)
+        {
+            return await _context.Movies.FindAsync(id);
         }
     }
 

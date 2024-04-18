@@ -17,7 +17,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>- Admin</title>
     <link rel="shortcut icon" type="image/png" href="~/Admin/images/logos/Logo.png" />
     <link rel="stylesheet" href="~/Admin/css/styles.min.css" />
 </head>
@@ -31,9 +31,8 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./Index.cshtml" class="text-nowrap logo-img">
-@*                         C:\Users\Tan Nguyen\source\repos\Btalk-Cinema\WebCinema\Views\Admin\Index.cshtml
-*@                        <img src="~/Admin/images/logos/Logo.png" width="80" class="rounded-circle" alt="" />
+                    <a href="./Index" class="text-nowrap logo-img">
+                       <img src="~/Admin/images/logos/Logo.png" width="80" class="rounded-circle" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -72,26 +71,6 @@
                                     <i class="ti ti-file-description"></i>
                                 </span>
                                 <span class="hide-menu">Show all the movies</span>
-                            </a>
-                        </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">AUTH</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-login"></i>
-                                </span>
-                                <span class="hide-menu">Login</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Register</span>
                             </a>
                         </li>
                     </ul>
@@ -164,7 +143,7 @@
                                                     <label asp-for="GenreId">Genre</label>
                                                     <select asp-for="GenreId" asp-items="ViewBag.Genres"
                                                             class="form-control"></select>
-                                                @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
 
                                                 </div>
                                                 <div class="form-group">
@@ -181,13 +160,13 @@
                                                 <div class="form-group">
                                                     <label asp-for="ReleaseDate"></label>
 @*                                                     <textarea asp-for="ReleaseDate" class="form-control"></textarea>
- *@                                                    <input type="date" asp-for="ReleaseDate" class="form-control" />
+                                            *@          <input type="date" asp-for="ReleaseDate" class="form-control" value="@DateTime.Now.ToString("dd-MM-yyyy")" />
 @*                                                     <span asp-validation-for="ReleaseDate" class="text-danger"></span>
  *@                                                </div>
                                                 <div class="form-group">
                                                     <label asp-for="EndDate"></label>
 @*                                                     <textarea asp-for="EndDate" class="form-control"></textarea>
- *@                                                    <input type="date" asp-for="EndDate" class="form-control" />
+                                            *@          <input type="date" asp-for="EndDate" class="form-control" value="@DateTime.Now.ToString("dd-MM-yyyy")" />
 
 @*                                                     <span asp-validation-for="EndDate" class="text-danger"></span>
  *@                                                </div>
