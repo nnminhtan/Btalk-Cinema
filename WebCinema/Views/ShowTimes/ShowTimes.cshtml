@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<WebCinema.Models.Movie>
+
 @{
     ViewData["Title"] = "LichChieu";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
-    //DateTime selectedDate = ViewBag.SelectedDate != null ? (DateTime)ViewBag.SelectedDate : DateTime.Now;
-    //DateTime selectedDate = ViewBag.SelectedDate;
-  //  DateTime selectedDate = DateTime.Now;
-
+    DateTime currentDate = DateTime.Today;
+    DateTime selectedDate = ViewBag.SelectedDate;
 }
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 
 <body>
     <!--Body begin-->
@@ -32,20 +30,14 @@
 
     <!--Combo box-->
     <div class="box-selected">
-
-
-
-        <li class="nav-item">
-            @for (int i = 0; i < 5; i++)
+        <div class="date-selector">
+            @for (int i = -2; i <= 2; i++)
             {
-                <a class="nav-link active show" id="pills-popular-tab-0" data-toggle="pill" href="#pills-popular-0" role="tab" aria-controls="pills-popular-0" aria-selected="true">
-                    <label for="dateSelect">NGÀY CHIẾU</label>
-
-                    @DateTime.Today.AddDays(i).ToShortDateString()
-                    <div class="product-list"></div>
-                </a>
+                DateTime date = currentDate.AddDays(i);
+                string cssClass = (i == 0) ? "selected" : "";
+                <a href="#" class="date @cssClass">@date.ToShortDateString()</a>
             }
-        </li>
+        </div>
     </div>
         <div class="product-list">
             <!--Add Film-->
@@ -96,7 +88,7 @@
                                     </div>
 
                                     <div class="showtime-buttons">
-                                        @foreach (var showtime in movie.Showtimes.Where(s => s.MovieId == movie.MovieId && s.Movie.MovieName == movie.MovieName @* && s.ShowtimeDate.Date == selectedDate.Date *@))
+                                        @foreach (var showtime in movie.Showtimes.Where(s => s.MovieId == movie.MovieId && s.ShowtimeDate.Date == selectedDate.Date))
                                         {
                                             <form asp-action="SelectShowtime" method="post">
                                                 <input type="hidden" name="movieId" value="@showtime.MovieId" />
@@ -114,9 +106,30 @@
                 </div>
             }
         </div>
-
-
-   
-  
-
 </body>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Your JavaScript code -->
+<script>
+    $('.date').click(function () {
+        $('.date').removeClass('selected');
+        $(this).addClass('selected');
+        var selectedDate = $(this).text();
+
+        // AJAX call to fetch showtimes for the selected date
+        $.ajax({
+            url: '/showtimes/GetShowtimes', // Adjust the URL as needed
+            method: 'GET',
+            data: { selectedDate: selectedDate },
+            success: function (response) {
+                // Update the showtimes section with the response
+                $('.showtime-buttons').html(response);
+            },
+            error: function (error) {
+                console.error('Error fetching showtimes:', error);
+            }
+        });
+    });
+</script>

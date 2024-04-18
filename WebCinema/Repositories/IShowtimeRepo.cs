@@ -7,5 +7,7 @@ namespace WebCinema.Repositories
         Task<List<Showtime>> GetByMovieIdAsync(int movieId);
 
         Task<Showtime> GetByIdAsync(int id);
+
+        IEnumerable<Showtime> GetShowtimesForDate(DateTime selectedDate);
     }
 }

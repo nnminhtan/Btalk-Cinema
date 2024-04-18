@@ -27,5 +27,14 @@ namespace WebCinema.Repositories
                 .Include(s => s.Screentime)
                 .FirstOrDefaultAsync(s => s.ShowId == id);
         }
+
+        public IEnumerable<Showtime> GetShowtimesForDate(DateTime selectedDate)
+        {
+            // Filter showtimes based on the selected date
+            return _context.Showtimes
+                .Where(s => s.ShowtimeDate.Date == selectedDate.Date)
+                .Include(s => s.Screentime)
+                .ToList();
+        }
     }
 }
