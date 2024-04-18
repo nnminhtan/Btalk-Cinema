@@ -50,7 +50,32 @@ h6 {
 	font-weight: 400;
 	font-family: "Mulish", sans-serif;
 }
+.footer {
+	background-color: #ff6a00; /* Màu nền của footer */
+	padding: 0px 0; /* Khoảng cách giữa nội dung và viền của footer */
+}
 
+.container {
+	display: flex;
+	justify-content: space-between; /* Căn các phần tử trong container ra xa nhau */
+	align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.footer__logo img {
+	max-width: 100%; /* Đảm bảo logo không vượt quá kích thước của phần tử cha */
+	height: auto; /* Đảm bảo tỷ lệ khung hình được giữ nguyên */
+}
+
+.footer h5 {
+	margin: 0; /* Loại bỏ margin mặc định */
+	margin-bottom: 10px; /* Khoảng cách giữa các đoạn văn bản */
+	font-size: 18px; /* Kích thước chữ */
+	color: aliceblue;
+}
+
+	.footer h5:last-child {
+		margin-bottom: 0; /* Loại bỏ khoảng cách dưới cùng */
+	}
 h1 {
 	font-size: 70px;
 }
@@ -101,7 +126,9 @@ span.seat-text {
 }
 
 img {
-
+	width: 80px; /* Chiều rộng poster */
+	height: 80px; /* Chiều cao poster */
+	margin: 0 auto;
 	max-width: 100%;
 }
 
@@ -419,7 +446,7 @@ ol {
 }
 
 .header__menu ul li a {
-	font-size: 15px;
+	
 	color: #b7b7b7;
 	display: block;
 	font-weight: 700;

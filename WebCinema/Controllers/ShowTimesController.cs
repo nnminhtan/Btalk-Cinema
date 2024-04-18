@@ -31,11 +31,15 @@ namespace WebCinema.Controllers
 
         public async Task<IActionResult> ShowTimes()
         {
-            DateTime currentDate = DateTime.Today;
-            ViewBag.SelectedDate = currentDate;
-            //  DateTime selectedDate = _movieRepo.GetSelectedDateFromDatabase();
+            DateTime selectedDate = DateTime.Today;
+            if (Request.Query.ContainsKey("selectedDate"))
+            {
+                DateTime.TryParse(Request.Query["selectedDate"], out selectedDate);
+            }
             var movies = await _movieRepo.GetAllAsync();
-            //return View(movies);                                            
+            // Use selectedDate if needed for further processing
+
+            ViewBag.SelectedDate = selectedDate; // Optional: Set ViewBag here
             var moviesWithShowtimes = await _movieRepo.GetAllWithShowtimesAndScreentimesAsync();
             return View(moviesWithShowtimes);
         }
