@@ -6,5 +6,6 @@ namespace WebCinema.Repositories
     {
         Task<IEnumerable<Screentime>> GetAllAsync();
         Task<Screentime> GetByIdAsync(int id);
+        Task<Screentime> GetScreentimeByTimeAsync(TimeSpan screenTime);
     }
 }

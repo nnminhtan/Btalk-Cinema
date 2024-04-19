@@ -146,10 +146,11 @@
                             <span></span>
                         </div>
                             <input name="FullName" type="text" id="FullName" placeholder="Họ và Tên">
-
+                        @Html.ValidationMessageFor(model => model.FullName)
                             <input name="Email" type="text" id="Email" placeholder="Email">
-
+                        @Html.ValidationMessageFor(model => model.Email)
                             <input name="PhoneNumber" type="text" id="PhoneNumber" placeholder="Số điện thoại">
+                        @Html.ValidationMessageFor(model => model.PhoneNumber)
                     </div>
                 </div>
                 <div class="box-pay">

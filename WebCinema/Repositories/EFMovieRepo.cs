@@ -79,7 +79,10 @@ namespace WebCinema.Repositories
         {
             return await _context.Movies.FindAsync(id);
         }
+
+        public async Task<Movie> GetMovieByNameAsync(string movieName)
+        {
+            return await _context.Movies.FirstOrDefaultAsync(m => m.MovieName == movieName);
+        }
     }
-
-
 }

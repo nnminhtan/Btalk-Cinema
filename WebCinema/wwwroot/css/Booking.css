@@ -114,11 +114,19 @@ p{
                     }
 
 
-    .content-item .item-right {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-    }
+.content-item .item-right {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    max-width: 400px
+}
+
+/* Adjust the styling of validation messages */
+.field-validation-error {
+    font-size: smaller;
+    color: yellow;
+    margin-top: 2px; /* Adjust spacing as needed */
+}
 
         .content-item .item-right .section-item {
             background: #3a406d;

@@ -130,6 +130,14 @@ function updateTable() {
     $('#selectedSeats').val(selectedSeats.join(',')); // Join selected seat IDs into a comma-separated string
     $('#selectedCombos').val(selectedCombos.join(',')); // Join selected combo IDs into a comma-separated string
     $('#totalMoney').val(parseInt(totalMoney));
+
+    // Enable/disable payment button based on selected seats
+    var paymentButton = $('#paymentButton');
+    if (selectedSeats.length === 0) {
+        paymentButton.prop('disabled', true);
+    } else {
+        paymentButton.prop('disabled', false);
+    }
 }
 
 // Initial table update

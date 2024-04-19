@@ -64,6 +64,16 @@ namespace WebCinema.Controllers
         [HttpPost]
         public async Task<IActionResult> BookingSeat(string payment, TicketViewModel model, string selectedSeats, string selectedCombos)
         {
+            var bookingSeatViewModel = new BookingSeatViewModel
+            {
+                Movie = await _movieRepo.GetMovieByNameAsync(model.MovieName),
+                Showtime = await _showtimeRepo.GetByIdAsync(model.ShowId),
+                Screentime = await _screentimeRepo.GetScreentimeByTimeAsync(model.ScreenTime),
+                BookedSeats = _ticketRepo.GetBookedSeats(model.ShowId),
+                FullName = model.FullName,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+            };
             if (ModelState.IsValid)
             {
                 var ticket = new Ticket
@@ -141,9 +151,7 @@ namespace WebCinema.Controllers
                 }
             }
 
-            // Handle invalid model state
-            // Return the view with errors or redirect to an error page
-            return View(model);
+            return View(bookingSeatViewModel);
         }
 
         public IActionResult PaymentSuccess()
