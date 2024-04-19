@@ -11,19 +11,21 @@ namespace WebCinema.Controllers
         private readonly IGenreRepo _genreRepo;
         private readonly IMovieRepo _movieRepo;
         private readonly IShowtimeRepo _showtimeRepo;
-
-        public ShowTimesController(IMovieRepo movieRepo, IGenreRepo genreRepo, IShowtimeRepo showtimeRepo)
+        private readonly ApplicationDbContext _context;
+        public ShowTimesController(IMovieRepo movieRepo, IGenreRepo genreRepo, IShowtimeRepo showtimeRepo, ApplicationDbContext context)
         {          
             _movieRepo = movieRepo;
             _genreRepo = genreRepo;
             _showtimeRepo = showtimeRepo;
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult GetShowtimes(DateTime selectedDate)
         {
             // Retrieve showtimes from the database based on the selected date
-            var showtimes = _showtimeRepo.GetShowtimesForDate(selectedDate);
+            var showtimes = _context.Showtimes.Where(s => s.ShowtimeDate.Date == selectedDate.Date)
+            .ToList(); 
 
             // Return a partial view with the updated showtimes
             return PartialView("_ShowtimesPartial", showtimes);

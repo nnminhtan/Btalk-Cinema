@@ -1,5 +1,5 @@
 ﻿.header {
-    background-color: #ff6a00; /* Màu nền */
+    background-color: #3a406d; /* Màu nền */
     border-bottom: 1px solid #ccc; /* Viền dưới */
 }
 
@@ -37,13 +37,17 @@
 
         .header__menu ul li:last-child {
             margin-right: 0; /* Loại bỏ khoảng cách cho mục cuối cùng */
+            font-size: 30px;
         }
 
         .header__menu ul li a {
+            font-size: 30px;
             text-decoration: none;
-            color: #333; /* Màu chữ */
+            color: #ff9d55; /* Màu chữ */
         }
-
+.header__right {
+    color: #ff9d55;
+}
         .header__menu ul li.active a {
             font-weight: bold; /* In đậm cho mục hiện tại */
         }

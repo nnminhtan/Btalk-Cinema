@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<WebCinema.Models.Showtime>
 
-@if (Model != null && Model.Any())
-{
-    foreach (var showtime in Model)
+
+    @foreach (var showtime in Model)
     {
         <div class="showtime-item">
             <form asp-action="SelectShowtime" method="post">
@@ -12,8 +11,3 @@
             </form>
         </div>
     }
-}
-else
-{
-    <p>No showtimes available for the selected date.</p>
-}

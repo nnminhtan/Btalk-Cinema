@@ -20,6 +20,7 @@
     flex: 0 0 30%; /* Điều chỉnh kích thước của phần trái */
     position: relative;
 }
+
 .movie-hot:after {
     width: 50%; /* Phim chiếm 50% chiều rộng */
 }
@@ -67,20 +68,20 @@
 }
 
 
-.item-left  {
-    width: 200px; /* Chiều rộng poster */
-    height: 200px; /* Chiều cao poster */
+.item-left img {
+    width: 60%; /* Chiều rộng poster */
+    height: 90%; /* Chiều cao poster */
     margin: 0 auto; /* Căn giữa poster */
-    border: 1px solid #ccc; /* Viền poster */
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Bóng đổ poster */
+   
 }
 
+    
 /* Thiết kế phần tử con */
 .episode-all {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Màu nền của phần tử */
+    
     color: #fff; /* Màu chữ của phần tử */
     padding: 3px;
 }

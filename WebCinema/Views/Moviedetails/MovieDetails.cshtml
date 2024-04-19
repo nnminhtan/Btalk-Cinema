@@ -2,12 +2,14 @@
 @{
     ViewData["Title"] = "MovieDeltails";
     //var movie = Model.FirstOrDefault(); // Lấy thông tin của phim đầu tiên trong danh sách
+    
+    
 }
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      <link href="~/css/moviedetails.css" rel="stylesheet" />
 <body>
     <!--Body begin-->
-    <link href="~/css/moviedetails.css" rel="stylesheet" />
     <div class="Title-span shar" style="font-weight: bold">
         <a href="/">
             <span>Trang Chủ</span>
@@ -25,49 +27,41 @@
     {
         <div class="banner">
             <span></span>
-        </div>
-        <div class="movie-detail-wapper">
+        </div>       
             <div class="contents-page">
-                <div class="dt-contents">
+               
                     <div class="dt-left clearfix">
                         <div class="img-content">
                             <div class="box">
                                 <div class="box-left">
+                                    <h2>@Model.MovieName</h2>
                                     <p class="icon-detail-yell">
-                                        Thời lượng: <span>
-                                            @Model.MovieLength
-                                        </span>
+                                         <span> <i class="fas fa-clock"></i><span>Thời lượng:</span>@Model.MovieLength </span>
                                     </p>
                                     <p class="icon-detail-yell-2">
-                                        Khởi chiếu: <span>
-                                            @Model.ReleaseDate.ToShortDateString()
-                                        </span>
+                                        <i class="fas fa-tags"></i><span>Thể loại:</span>@Model.Genre.GenreName
                                     </p>
                                 </div>
                                 <div class="box-right">
                                     <p class="icon-detail-yell-1">
-                                        Thể loại: <span>
-                                            @Model.Genre.GenreName
-                                        </span>
+                                        <i class="fas fa-calendar"></i><span>Khởi chiếu:</span>@Model.ReleaseDate
                                     </p>
                                 </div>
                             </div>
-                            <div class="box2">
-                                <span>@Model.Description</span>
-                            </div>
+                            
                             <div class="clearfix"></div>
                             <p class="p-bold">
                                 Ngôn ngữ: <span>
                                     Phụ đề Tiếng Việt
                                 </span>
                             </p>
-                            <!-- <p class="p-bold">Phát hành: <span>Galaxy Distribution </span></p> -->
+                            
                             <div class="clearfix"></div>
                             <div class="dt-film-content scroll-detail clearfix" style="overflow: hidden; padding: 0px; width: 450px;">
                                 <div class="jspContainer" style="width: 450px; height: 140px;">
                                     <div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 450px;">
                                         <p>
-                                        </p><p><span>@Model.Description</span></p><p></p>
+                                       <span>@Model.Description</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -84,10 +78,7 @@
                                 <img src="@Url.Content(Model.Poster)" alt="" height=405>
                             </a><a class="play-icon product-zoom open-popup-youtube" data-youtube-id="YjNWFVvUhwU" title="" href="javascript:void(0)"></a>
                         </div                        
-                    </div>
-                   
-                </div>
+                    </div>              
             </div>
-        </div>
     }
 </body>

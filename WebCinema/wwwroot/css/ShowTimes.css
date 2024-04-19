@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: lightgrey;
+   
 }
 /* Định dạng menu dropdown */
 .booking-fixed {
@@ -86,6 +86,7 @@ select {
 }
 
 .list-items {
+   
     display: flex;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -98,8 +99,12 @@ select {
     
     color: #ff0000; /* Đỏ */
 }
-
+h5 {
+   
+    color:brown;
 }
+
+
     .item-left img {
         width: 200px; /* Chiều rộng poster */
         height: 200px; /* Chiều cao poster */
@@ -126,12 +131,23 @@ select {
 
 
 
-.item-right {   
+.item-right . {   
     padding: 10px;
     box-sizing: border-box;
-
+}
+.showtime-buttons {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    margin-top: 10px; /* Để tạo khoảng cách giữa các hàng */
 }
 
+.showtime-buttons-container {
+    display: flex; /* Sử dụng Flexbox để chứa các nút */
+}
+
+    .showtime-buttons-container form {
+        margin-right: 10px; /* Để tạo khoảng cách giữa các nút */
+    }
 .movie-image {
     width: 100%;
     height: auto;

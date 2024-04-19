@@ -1,6 +1,7 @@
 ﻿.footer {
-    background-color: #ff6a00; /* Màu nền của footer */
+    background-color: #3a406d; /* Màu nền của footer */
     padding: 0px 0; /* Khoảng cách giữa nội dung và viền của footer */
+
 }
 
 .container {
@@ -18,7 +19,7 @@
     margin: 0; /* Loại bỏ margin mặc định */
     margin-bottom: 10px; /* Khoảng cách giữa các đoạn văn bản */
     font-size: 18px; /* Kích thước chữ */
-    color: aliceblue;
+    color: #ff9d55;
 }
 
     .footer h5:last-child {
