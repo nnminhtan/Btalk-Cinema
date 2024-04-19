@@ -77,7 +77,7 @@
                                     <div class="item-right">
                                         <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
                                             <h4 class="movie-color">@movie.MovieName</h4>
-                                            <p>Phim1[pg000]</p>
+                                            
                                         </a>
                                         <p class="icon-clock">thời lượng: <span>@movie.MovieLength</span></p>
                                         <p class="icon-type">Thể Loại: <span>@movie.Genre.GenreName</span></p>
@@ -114,32 +114,35 @@
                             {
                                 <div class="list-items">
                                     <div class="item-left">
-                                        <a href="/MovieDetails/MovieDetails">
-                                            <div class="episode-all" style="display:flex">
-                                                    @if (!string.IsNullOrEmpty(movie.Poster))
-                                                    {@*
+                                        <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
+                                            <div class="episode-all">
+                                                @if (!string.IsNullOrEmpty(movie.Poster))
+                                                {
+                                                    @*
                                             var basePath = "/images";
                                             var fileName = product.Poster;
                                             var imagePath = basePath + "/" + fileName; *@
-                                                        var imagePath = Url.Content(movie.Poster); // Use Url.Content
+                                                    var imagePath = Url.Content(movie.Poster); // Use Url.Content
 
-                                                    <img src="@imagePath" alt="Movie Poster" style="max-width: 200px;" />
-                                                    }
+                                                    <img src="@imagePath" alt="Movie Poster" />
+                                                }
                                             </div>
                                         </a>
-                                        <!-- Link Product -->
+
                                     </div>
+
                                     <div class="item-right">
                                         <a href="/MovieDetails/MovieDetails/?movieId=@movie.MovieId">
                                             <h4 class="movie-color">@movie.MovieName</h4>
-                                            <p>Phim1[pg000]</p>
+                                            
                                         </a>
                                         <p class="icon-clock">thời lượng: <span>@movie.MovieLength</span></p>
                                         <p class="icon-type">Thể Loại: <span>@movie.Genre.GenreName</span></p>
-                                        <p class="icon-calendar">Khởi Chiếu: <span>@movie.ReleaseDate</span></p>
-                                        <div class="movie-2d">
-                                            <a href="#"><span>2D</span></a><a href="#"><span>K</span></a>
-                                        </div>
+                                        <p class="icon-calendar">Khởi Chiếu: <span>@movie.ReleaseDate.ToShortDateString()</span></p>
+                                        <a class="active">
+                                            <span class="ganre">2D</span>
+                                            <span class="viet_sub">Phụ đề / sub</span>
+                                        </a>
                                         <div class="movie-tool">
                                             <div class="imdb">
                                                 <div data-imdb-id="1133" class="score" imdb=""></div>
@@ -147,7 +150,10 @@
                                             </div>
                                             <div class="trailer">
                                                 <a class="open-popup-youtube" href="@movie.Trailer">
-                                                    <div><i class="fa fa-play"></i></div><div>Trailer</div>
+                                                    <div style="display: flex; align-items: center;">
+                                                        <i class="fa fa-play"></i>
+                                                        <div style="margin-left: 5px;">Trailer</div>
+                                                    </div>
                                                 </a>
                                             </div>
                                         </div>

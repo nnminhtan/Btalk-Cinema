@@ -32,7 +32,7 @@
 
     .drawer-header {
         display: flex;
-        background: #828282;
+        background-color: grey;
         color: #fff;
         padding: 8px;
         cursor: pointer;
@@ -42,17 +42,35 @@
         font-size: 1pt;
     }
 
+
+
         .drawer-header:hover {
             background-color: #ddd;
+        }
+
+        .drawer-header.active {
+            background-color: #3c446c; /* Màu nền mới khi được nhấn */
         }
 
     .drawer-content {
         padding: 10px;
         display: none;
         color: aliceblue;
+        background-color: grey;
     }
 
+        .drawer-content ul {
+            margin: 0; /* Loại bỏ margin mặc định của ul */
+            padding: 0; /* Loại bỏ padding mặc định của ul */
+        }
+
+        .drawer-content li {
+            display: inline-block; /* Hiển thị các phần tử li theo chiều ngang */
+            margin-right: 10px; /* Khoảng cách giữa các phần tử li */
+        }
+
     .drawer-header h1 {
+        color: #ff9d55;
         font-size: 24px;
         font-weight: 1000;
         margin: 0;
@@ -352,15 +370,25 @@
         drawerHeaders.forEach(header => {
             header.addEventListener('click', function () {
                 const content = this.nextElementSibling;
-                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                const isOpen = content.style.display === 'block';
 
+                // Đảo ngược trạng thái của drawer-content
+                content.style.display = isOpen ? 'none' : 'block';
+
+                // Thay đổi hướng mũi tên dựa trên trạng thái của drawer-content
                 const icons = this.querySelectorAll('.drawer-header-icon');
                 icons.forEach(icon => {
-                    icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
+                    icon.textContent = isOpen ? '▼' : '▲';
                 });
+
+                // Thêm hoặc xóa lớp active khi nhấn vào drawer-header
+                this.classList.toggle('active');
             });
         });
     });
+
+
+
 
 
 
