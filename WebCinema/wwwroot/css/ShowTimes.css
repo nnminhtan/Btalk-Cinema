@@ -27,7 +27,7 @@
         padding: 10px 20px;
         color: white;
         text-decoration: none;
-        background-color: grey; /* Màu cam */
+        background-color: grey; 
     }
 
     /* Định dạng cho liên kết được chọn */
@@ -41,7 +41,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: grey; /* Màu cam */
+        background-color: grey; 
         padding: 10px;
         z-index: 1;
     }

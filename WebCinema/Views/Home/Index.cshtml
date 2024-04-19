@@ -26,15 +26,17 @@
         </div>
     </div>
 </section>
-<a href="@Url.Action("Movie", "Movie")">  
+<a href="@Url.Action("Movie", "Movie")" >
+    <div class="container">
+        <h4>Phim Đang Chiếu</h4>
+    </div>
 </a>
-<h4>Phim Đang Chiếu:</h4>
 <div class="slider-wrapper">
     <div class="slider-container">
-        
-            <ul class="slider">
+
+        <ul class="slider">
             @foreach (var movie in Model)
-            { 
+            {
                 <li>
                     <a href="~/ShowTimes/ShowTimes">
                         <img src="@Url.Content(@* "~/images/" +  *@movie.Poster)" />
@@ -42,8 +44,8 @@
 
                 </li>
             }
-            </ul>
-     
+        </ul>
+
 
         <button class="prev">&#10094;</button> <!-- Biểu tượng mũi tên sang trái -->
         <button class="next">&#10095;</button> <!-- Biểu tượng mũi tên sang phải -->
@@ -62,16 +64,16 @@
                     <a href="#" style="float: left; list-style: none; position: relative; width: 800px;" aria-hidden="true">
                         <img src="https://cms.megagscinemas.vn//media/76665/screen-shot-2021-10-28-at-15-20-17.png?width=802&amp;height=333">
                         <img src="https://cms.megagscinemas.vn//media/76664/screen-shot-2021-10-29-at-14-43-18.png?width=802&amp;height=333">
-                    </a>                   
+                    </a>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
     <div class="notes-right">
     </div>
 </div>
  *@
-<script>
+@* <script>
     document.addEventListener('DOMContentLoaded', function () {
         var slider = document.querySelector('.slider');
         var slideWidth = slider.querySelector('li').offsetWidth * 3;
@@ -108,4 +110,5 @@
             }, 0);
         });
     });
-</script>
+</script> *@
+
