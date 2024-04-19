@@ -9,5 +9,6 @@ namespace WebCinema.Repositories
         Task<Showtime> GetByIdAsync(int id);
 
         IEnumerable<Showtime> GetShowtimesForDate(DateTime selectedDate);
+        Task AddAsync(Showtime showtime);
     }
 }

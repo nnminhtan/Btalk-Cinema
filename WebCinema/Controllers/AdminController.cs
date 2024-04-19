@@ -12,10 +12,20 @@ namespace WebCinema.Controllers
     {
         private readonly IMovieRepo _movieRepo;
         private readonly IGenreRepo _genreRepo;
-        public AdminController(IMovieRepo movieRepo, IGenreRepo genreRepo)
+        private readonly IShowtimeRepo _showtimeRepo;
+        private readonly IScreentimeRepo _screentimeRepo;
+        private readonly IRoomRepo _roomRepo;
+
+
+
+        public AdminController(IMovieRepo movieRepo, IGenreRepo genreRepo, 
+            IShowtimeRepo showtimeRepo, IScreentimeRepo screentimeRepo, IRoomRepo roomRepo)
         {
             _movieRepo = movieRepo;
             _genreRepo = genreRepo;
+            _showtimeRepo = showtimeRepo;
+            _screentimeRepo = screentimeRepo;
+            _roomRepo = roomRepo;
         }
         // Hiển thị danh sách sản phẩm
         public async Task<IActionResult> Index()
@@ -58,12 +68,12 @@ namespace WebCinema.Controllers
             else
             {
                 ModelState.AddModelError("Poster", "Please enter a image.");
+                // Nếu ModelState không hợp lệ, hiển thị form với dữ liệu đã nhập
+                var genres = await _genreRepo.GetAllAsync();
+                ViewBag.Genres = new SelectList(genres, "GenreId", "GenreName");
                 return View(movie);
             }
-            // Nếu ModelState không hợp lệ, hiển thị form với dữ liệu đã nhập
-            var genres = await _genreRepo.GetAllAsync();
-            ViewBag.Genres = new SelectList(genres, "GenreId", "GenreName");
-            return View(movie);
+            
         }
 
         private async Task<string> SaveImage(IFormFile image)
@@ -153,11 +163,11 @@ namespace WebCinema.Controllers
             else
             {
                 ModelState.AddModelError("Poster", "Please enter a image.");
+                var genres = await _genreRepo.GetAllAsync();
+                ViewBag.Genres = new SelectList(genres, "GenreId", "GenreName");
                 return View(movie);
             }
-            var genres = await _genreRepo.GetAllAsync();
-            ViewBag.Genres = new SelectList(genres, "GenreId", "GenreName");
-            return View(movie);
+            
         }
         // Hiển thị form xác nhận xóa sản phẩm
         public async Task<IActionResult> Delete(int id)
@@ -196,6 +206,46 @@ namespace WebCinema.Controllers
         private bool ValidatImageSize(IFormFile file, long maximumSize)
         {
             return file.Length <= maximumSize;
+        }
+        public async Task<IActionResult> AddShowtime(Showtime showtime, int movieId) // Use the Showtime model as the parameter
+        {
+            //showtime.MovieId = movieId;
+            var movies = await _movieRepo.GetAllShowAsync(movieId);
+            ViewBag.Movies = new SelectList(movies, "MovieId", "MovieName");
+
+            var screentimes = await _screentimeRepo.GetAllAsync();
+            ViewBag.Screentimes = new SelectList(screentimes, "ScreenTimeId", "ScreenTime");
+
+            var rooms = await _roomRepo.GetAllAsync();
+            ViewBag.Rooms = new SelectList(rooms, "RoomId", "RoomName");
+
+            return View(showtime); // Re-render the view with populated showtime object (for validation errors)
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddShowtime(Showtime showtime, int movieId, string roomId)
+        {
+            //var movie = await _movieRepo.GetByIdAsync(movieId);
+            //var room = await _roomRepo.GetByIdAsync(roomId);
+            if (ModelState.IsValid)
+            {
+                await _showtimeRepo.AddAsync(showtime);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                // Nếu ModelState không hợp lệ, hiển thị form với dữ liệu đã nhập
+
+                var movies = await _movieRepo.GetAllShowAsync(movieId);
+                ViewBag.Movies = new SelectList(movies, "MovieId", "MovieName");
+
+                var screentimes = await _screentimeRepo.GetAllAsync();
+                ViewBag.Screentimes = new SelectList(screentimes, "ScreenTimeId", "ScreenTime");
+
+                var rooms = await _roomRepo.GetAllAsync();
+                ViewBag.Rooms = new SelectList(rooms, "RoomId", "RoomName");
+                return View(showtime);
+            }
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Sockets;
 
 namespace WebCinema.Models
@@ -15,10 +16,12 @@ namespace WebCinema.Models
 
         public int MovieId { get; set; }
 
-        public Movie Movie { get; set; }
-        public Room Room { get; set; }
-        public Screentime Screentime { get; set; }
+        public Movie? Movie { get; set; }
+        public Room? Room { get; set; }
+        public Screentime? Screentime { get; set; }
+        //public SelectList Screentimes { get; set; }
 
-        public ICollection<Ticket> Tickets { get; set; }
+
+        public ICollection<Ticket>? Tickets { get; set; }
     }
 }

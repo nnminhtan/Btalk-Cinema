@@ -35,6 +35,10 @@ namespace WebCinema.Repositories
                 .Where(s => s.ShowtimeDate.Date == selectedDate.Date)
                 .Include(s => s.Screentime)
                 .ToList();
+        public async Task AddAsync(Showtime showtime)
+        {
+            _context.Showtimes.Add(showtime);
+            await _context.SaveChangesAsync();
         }
     }
 }

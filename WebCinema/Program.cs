@@ -21,6 +21,10 @@ builder.Services.AddScoped<IMovieDetailRepo, EFMovieDetailRepo>();
 builder.Services.AddScoped<IMovieRepo, EFMovieRepo>();
 builder.Services.AddScoped<IGenreRepo, EFGenreRepo>();
 builder.Services.AddScoped<IShowtimeRepo, EFShowtimeRepo>();
+builder.Services.AddScoped<IScreentimeRepo, EFScreentimeRepo>();
+builder.Services.AddScoped<IRoomRepo, EFRoomRepo>();
+
+
 
 
 var app = builder.Build();
