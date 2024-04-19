@@ -9,5 +9,8 @@
         public DateTime ShowDate { get; set; }
         public int ShowId { get; set; }
         public int TotalMoney { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

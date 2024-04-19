@@ -2,12 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using WebCinema.Models;
 using WebCinema.Repositories;
+using WebCinema.Services;
 using WebCinema.ViewModels;
 
 namespace WebCinema.Controllers
 {
     public class TicketController : Controller
     {
+        private readonly IVnPayService _vnPayservice;
         private readonly ApplicationDbContext _context;
         private readonly IGenreRepo _genreRepo;
         private readonly IMovieRepo _movieRepo;
@@ -16,7 +18,7 @@ namespace WebCinema.Controllers
         private readonly ITicketRepo _ticketRepo;
 
         public TicketController(IMovieRepo movieRepo, IGenreRepo genreRepo, IShowtimeRepo showtimeRepo,
-            IScreentimeRepo screentimeRepo, ITicketRepo ticketRepo, ApplicationDbContext context)
+            IScreentimeRepo screentimeRepo, ITicketRepo ticketRepo, ApplicationDbContext context, IVnPayService vnPayservice)
         {
             _context = context;
             _movieRepo = movieRepo;
@@ -24,6 +26,7 @@ namespace WebCinema.Controllers
             _showtimeRepo = showtimeRepo;
             _screentimeRepo = screentimeRepo;
             _ticketRepo = ticketRepo;
+            _vnPayservice = vnPayservice;
         }
         public async Task<IActionResult> BookingSeat(int movieId, int showtimeId)
         {
@@ -59,11 +62,10 @@ namespace WebCinema.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> BookingSeat(TicketViewModel model, string selectedSeats, string selectedCombos)
+        public async Task<IActionResult> BookingSeat(string payment, TicketViewModel model, string selectedSeats, string selectedCombos)
         {
             if (ModelState.IsValid)
             {
-                // Create a new Ticket object and populate its properties
                 var ticket = new Ticket
                 {
                     MovieName = model.MovieName,
@@ -73,7 +75,9 @@ namespace WebCinema.Controllers
                     ShowDate = model.ShowDate,
                     ShowId = model.ShowId,
                     Total = model.TotalMoney,
-                    // Set other properties as needed
+                    FullName = model.FullName,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
                 };
 
                 // Add the Ticket to the database
@@ -117,12 +121,56 @@ namespace WebCinema.Controllers
                 await _ticketRepo.AddTicketInfosAsync(ticketInfos, ticket.TicketId);
                 await _ticketRepo.AddTicketCombosAsync(ticketCombos, ticket.TicketId);
 
-                // Redirect to success page or return appropriate response
+                if (payment == "Thanh Toán")
+                {
+                    var vnPayModel = new VnPaymentRequestModel
+                    {
+                        Amount = (double)model.TotalMoney,
+                        CreatedDate = DateTime.Now,
+                        FullName = model.FullName,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        OrderId = new Random().Next(1000, 100000)
+                    };
+
+                    // Create the payment URL using the VnPay service
+                    var paymentUrl = _vnPayservice.CreatePaymentUrl(HttpContext, vnPayModel);
+
+                    // Redirect the user to the payment page
+                    return Redirect(paymentUrl);
+                }
             }
 
             // Handle invalid model state
             // Return the view with errors or redirect to an error page
-            return RedirectToAction("Index", "Home");
+            return View(model);
+        }
+
+        public IActionResult PaymentSuccess()
+        {
+            return View("PaymentSuccess");
+        }
+
+        public IActionResult PaymentFail()
+        {
+            return View();
+        }
+
+        public IActionResult PaymentCallBack()
+        {
+            var response = _vnPayservice.PaymentExecute(Request.Query);
+
+            if (response == null || response.VnPayResponseCode != "00")
+            {
+                TempData["Message"] = $"Lỗi thanh toán VN Pay: {response.VnPayResponseCode}";
+                return RedirectToAction("PaymentFail");
+            }
+
+
+
+
+            TempData["Message"] = $"Thanh toán VNPay thành công";
+            return RedirectToAction("PaymentSuccess");
         }
     }
 }

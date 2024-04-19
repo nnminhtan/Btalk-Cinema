@@ -135,44 +135,42 @@
                     </table>
                 </div>
             </div>
-            <div class="box-info-pay">
-                <div class="head-title">
-                    <h3>THÔNG TIN THANH TOÁN</h3>
-                    <span class="span_number">3</span>
-                </div>
-                <div class="box-input">
-                    <div class="show-error err">
-                        <span></span>
+            <form id="paymentForm" asp-action="BookingSeat" asp-controller="Ticket">
+                <div class="box-info-pay">
+                    <div class="head-title">
+                        <h3>THÔNG TIN THANH TOÁN</h3>
+                        <span class="span_number">3</span>
                     </div>
-                    <form method="post" asp-action="Pay" asp-controller="Home">
-                        <input name="txtCardName" type="text" id="txtCardName" placeholder="Họ và Tên">
+                    <div class="box-input">
+                        <div class="show-error err">
+                            <span></span>
+                        </div>
+                            <input name="FullName" type="text" id="FullName" placeholder="Họ và Tên">
 
-                        <input name="txtEmail" type="text" id="txtEmail" placeholder="Email">
+                            <input name="Email" type="text" id="Email" placeholder="Email">
 
-                        <input type="text" id="txtCustPhone" placeholder="Số điện thoại">
-                    </form>
+                            <input name="PhoneNumber" type="text" id="PhoneNumber" placeholder="Số điện thoại">
+                    </div>
                 </div>
-            </div>
-            <div class="box-pay">
-                <span>
-                    <span class="img-loading" style="position: absolute; top: 45%">
-                        <img src="~/images//loading.gif" style="width: 25px" alt="loading" />
+                <div class="box-pay">
+                    <span>
+                        <span class="img-loading" style="position: absolute; top: 45%">
+                            <img src="~/images//loading.gif" style="width: 25px" alt="loading" />
+                        </span>                   
+                            <!-- Hidden input fields to capture selected seat IDs and combo IDs -->
+                            <input type="hidden" id="movieName" name="movieName" value="@Model.Movie.MovieName" />
+                            <input type="hidden" id="roomName" name="roomName" value="@Model.Showtime.Room.RoomName" />
+                            <input type="hidden" id="screenTime" name="screenTime" value="@Model.Screentime.ScreenTime" />
+                            <input type="hidden" id="showId" name="showId" value="@Model.Showtime.ShowId" />
+                            <input type="hidden" id="purchaseDate" name="purchaseDate" value="@DateTime.Now" />
+                            <input type="hidden" id="showDate" name="showDate" value="@Model.Showtime.ShowtimeDate" />
+                            <input type="hidden" id="selectedSeats" name="selectedSeats" />
+                            <input type="hidden" id="selectedCombos" name="selectedCombos" />
+                            <input type="hidden" id="totalMoney" name="totalMoney" />
+                            <input id="paymentButton" type="submit" name="payment" value="Thanh Toán" />
                     </span>
-                    <form id="paymentForm" asp-action="BookingSeat" asp-controller="Ticket">
-                        <!-- Hidden input fields to capture selected seat IDs and combo IDs -->
-                        <input type="hidden" id="movieName" name="movieName" value="@Model.Movie.MovieName" />
-                        <input type="hidden" id="roomName" name="roomName" value="@Model.Showtime.Room.RoomName" />
-                        <input type="hidden" id="screenTime" name="screenTime" value="@Model.Screentime.ScreenTime" />
-                        <input type="hidden" id="showId" name="showId" value="@Model.Showtime.ShowId" />
-                        <input type="hidden" id="purchaseDate" name="purchaseDate" value="@DateTime.Now" />
-                        <input type="hidden" id="showDate" name="showDate" value="@Model.Showtime.ShowtimeDate" />
-                        <input type="hidden" id="selectedSeats" name="selectedSeats" />
-                        <input type="hidden" id="selectedCombos" name="selectedCombos" />
-                        <input type="hidden" id="totalMoney" name="totalMoney" />
-                        <input id="paymentButton" type="submit" name="payment" value="Thanh Toán" />
-                    </form>
-                </span>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

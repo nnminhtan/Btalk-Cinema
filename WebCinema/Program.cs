@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebCinema.Models;
 using WebCinema.Repositories;
+using WebCinema.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,7 @@ builder.Services.AddScoped<IScreentimeRepo, EFScreentimeRepo>();
 builder.Services.AddScoped<IRoomRepo, EFRoomRepo>();
 builder.Services.AddScoped<ITicketRepo, EFTicketRepo>();
 
-
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
 
 
 var app = builder.Build();

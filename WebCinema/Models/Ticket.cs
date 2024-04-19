@@ -16,6 +16,10 @@ namespace WebCinema.Models
 
         //public int? ComboId { get; set; }
         public int ShowId { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+
         //public string UserId { get; set; }
         //public ApplicationUser User { get; set; } // Navigation property
 

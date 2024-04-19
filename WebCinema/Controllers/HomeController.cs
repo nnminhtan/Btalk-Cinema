@@ -19,7 +19,7 @@ namespace WebCinema.Controllers
 
         public IActionResult Index()
         {
-            var movies = _context.Movies.ToList(); 
+            var movies = _context.Movies.Include(m => m.Genre).ToList(); 
             return View(movies);
         }
 
