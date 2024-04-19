@@ -16,5 +16,6 @@ namespace WebCinema.Repositories
         //Task<IEnumerable<Movie>> GetSelectedDateFromDatabase();
         Task<IEnumerable<Movie>> GetAllShowAsync(int movieId);
         Task<Movie> GetShowByMovieIdAsync(int id);
+        Task<Movie> GetMovieByNameAsync(string movieName);
     }
 }

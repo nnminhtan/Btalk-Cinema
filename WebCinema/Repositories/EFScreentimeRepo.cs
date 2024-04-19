@@ -19,5 +19,9 @@ namespace WebCinema.Repositories
             return await _context.Screentimes.FindAsync(id);
         }
 
+        public async Task<Screentime> GetScreentimeByTimeAsync(TimeSpan screenTime)
+        {
+            return await _context.Screentimes.FirstOrDefaultAsync(s => s.ScreenTime == screenTime);
+        }
     }
 }

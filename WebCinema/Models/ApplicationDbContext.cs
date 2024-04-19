@@ -21,6 +21,7 @@ namespace WebCinema.Models
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketInfo> TicketInfos { get; set; }
         public DbSet<Combo> Combos { get; set; }
+        public DbSet<TicketCombo> TicketCombos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
