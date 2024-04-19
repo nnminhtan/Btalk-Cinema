@@ -2,6 +2,7 @@
 var totalMoney = 0;
 var totalTicketMoney = 0;
 var selectedSeats = []; // Array to store selected seat IDs
+var selectedCombos = []; // Array to store selected combo IDs
 
 $(document).ready(function () {
     // Event listener for plus and minus buttons
@@ -25,6 +26,12 @@ $(document).ready(function () {
     $('.seat').click(function () {
         var seatId = $(this).data('seat-id');
         returnSeatValue(seatId); // Update seat selection
+    });
+
+    // Function to handle combo selection
+    $('.combo').click(function () {
+        selectedCombos = []; // Clear the selectedCombos array
+        updateTable(); // Update combo table
     });
 });
 
@@ -78,6 +85,7 @@ function updateTable() {
 
     // Iterate over each combo
     $('.combo').each(function () {
+        var comboId = $(this).data('combo-id');
         var comboName = $(this).find('.combo-info h4').text();
         var quantity = parseInt($(this).find('.Qlty').val());
         var comboPrice = parseFloat($(this).find('.combo-price').text()); // Retrieve combo price from hidden input
@@ -95,6 +103,11 @@ function updateTable() {
             '</tr>';
 
             tableBody.append(comboRow);
+
+            // Add the combo ID to the selectedCombos array based on its quantity
+            for (var i = 0; i < quantity; i++) {
+                selectedCombos.push(comboId); // Add combo ID to the array 'quantity' times
+            }
         }
     });
 
@@ -112,8 +125,12 @@ function updateTable() {
         '<td colspan="4"><span class="total-numb">' + totalMoney.toLocaleString() + '</span><span style="font-size: 24px; font-weight: bold;">VNĐ</span></td>' +
         '</tr>';
     tableBody.append(totalRow);
-}
 
+    // Update hidden input fields with selected seat IDs and combo IDs
+    $('#selectedSeats').val(selectedSeats.join(',')); // Join selected seat IDs into a comma-separated string
+    $('#selectedCombos').val(selectedCombos.join(',')); // Join selected combo IDs into a comma-separated string
+    $('#totalMoney').val(parseInt(totalMoney));
+}
 
 // Initial table update
 updateTable();

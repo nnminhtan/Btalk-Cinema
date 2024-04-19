@@ -4,17 +4,8 @@
     ViewData["Title"] = "BookingSeat";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
     // Get the date part of ShowtimeDate
-    string date = Model.Showtime.ShowtimeDate.ToShortDateString();
-
-    // // Get the ScreenTime based on the ScreentimeId in Showtime
-    // string time = "";
-    // if (Model.Showtime != null && Model.Showtime.Screentime != null)
-    // {
-    //     time = Model.Showtime.Screentime.ToString(@"hh\:mm");
-    // }
 }
 <link href="~/css/booking.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div class="content-item">
     <div class="item-left">
         <h3><span class="span_number">1</span><span></span><span>CHỌN VỊ TRÍ</span></h3>
@@ -38,23 +29,31 @@
                     </span>
                 </div>
                 <div class="Seating-Screen">
-                    <img src="~/images/seat/SeatScreen.png" style="width: 100%">
+                    <img src="~/images/seat/SeatScreen.png" style="width: 90%">
                 </div>
                 <div class="Seats">
                     <table>
-                        @for (int row = 1; row <= 5; row++)
+                        @for (char col = 'A'; col <= 'E'; col++)
                         {
                             <tr>
-                                @for (char col = 'A'; col <= 'H'; col++)
+                                @for (int row = 1; row <= 8; row++)
                                 {
                                     <td>
                                         @* Generate seat ID *@
                                         @{
-                                            var seatId = $"PC8_{col}{row}";
+                                            var seatId = $"{Model.Showtime.Room.RoomId}_{col}{row}";
+                                            var isBooked = Model.BookedSeats.Contains(seatId);
                                         }
-                                        <p class="seat" data-seat-id="@seatId">
+                                        <p class="seat" data-seat-id="@seatId" @(isBooked ? "style='pointer-events: none;'" : "")>
                                             <span class="seat-text" style="color: black;">@($"{col}{row}")</span>
-                                            <img class="seat-pic" src="~/images/seat/seat_empty.png" alt="Seat @($" PC8{col}{row}")" style="display: block; margin: 0 auto;" />
+                                            @if (isBooked)
+                                            {
+                                                <img class="seat-pic" src="~/images/seat/seat_booked.png" alt="Booked Seat" style="display: block; margin: 0 auto;" />
+                                            }
+                                            else
+                                            {
+                                                <img class="seat-pic" src="~/images/seat/seat_empty.png" alt="Available Seat" style="display: block; margin: 0 auto;" />
+                                            }
                                         </p>
                                     </td>
                                 }
@@ -68,7 +67,7 @@
         <h3><span class="span_number">2</span><span>CHỌN ĐỒ ĂN &amp; THỨC UỐNG</span><span style="font-size: 20px;"> (tùy chọn)</span></h3>
         <div class="combo-select">
             <div class="combo-box">
-                <div class="combo">
+                <div class="combo" data-combo-id="1">
                     <img src="https://cms.megagscinemas.vn//media/76070/combo-share.png" alt="">
                     <div class="combo-info">
                         <h4>Combo Bắp và Coca</h4>
@@ -80,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="combo">
+                <div class="combo" data-combo-id="2">
                     <img src="https://cms.megagscinemas.vn//media/76090/popcorn-caramel-40oz.png" alt="">
                     <div class="combo-info">
                         <h4>Bắp Caramel</h4>
@@ -92,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="combo">
+                <div class="combo" data-combo-id="3">
                     <img src="https://i.pngimg.me/thumb/f/720/m2i8A0G6N4H7i8K9.jpg" alt="">
                     <div class="combo-info">
                         <h4>Coca</h4>
@@ -114,7 +113,7 @@
                     <div class="movie-info-item">
                         <h3>@Model.Movie.MovieName</h3>
                         <p>BTalk Cinema</p>
-                        <p>@Model.Showtime.ShowtimeDate + @Model.Showtime.ScreenTimeId</p>
+                        <p>@Model.Showtime.ShowtimeDate.ToShortDateString() - @Model.Screentime.ScreenTime</p>
                         <p>@Model.Showtime.Room.RoomName</p>
                     </div>
                     <div class="movie-image">
@@ -159,8 +158,17 @@
                     <span class="img-loading" style="position: absolute; top: 45%">
                         <img src="~/images//loading.gif" style="width: 25px" alt="loading" />
                     </span>
-                    <form id="paymentForm" asp-action="Pay" asp-controller="Home">
-                        <!-- Other form fields go here -->
+                    <form id="paymentForm" asp-action="BookingSeat" asp-controller="Ticket">
+                        <!-- Hidden input fields to capture selected seat IDs and combo IDs -->
+                        <input type="hidden" id="movieName" name="movieName" value="@Model.Movie.MovieName" />
+                        <input type="hidden" id="roomName" name="roomName" value="@Model.Showtime.Room.RoomName" />
+                        <input type="hidden" id="screenTime" name="screenTime" value="@Model.Screentime.ScreenTime" />
+                        <input type="hidden" id="showId" name="showId" value="@Model.Showtime.ShowId" />
+                        <input type="hidden" id="purchaseDate" name="purchaseDate" value="@DateTime.Now" />
+                        <input type="hidden" id="showDate" name="showDate" value="@Model.Showtime.ShowtimeDate" />
+                        <input type="hidden" id="selectedSeats" name="selectedSeats" />
+                        <input type="hidden" id="selectedCombos" name="selectedCombos" />
+                        <input type="hidden" id="totalMoney" name="totalMoney" />
                         <input id="paymentButton" type="submit" name="payment" value="Thanh Toán" />
                     </form>
                 </span>

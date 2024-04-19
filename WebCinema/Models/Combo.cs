@@ -9,6 +9,6 @@ namespace WebCinema.Models
         public string ComboName { get; set; }
         public int? ComboPrice { get; set; }
 
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        public ICollection<TicketCombo> TicketCombos { get; set; }
     }
 }
